@@ -5,7 +5,7 @@ __version__ = "1.0"
 __email__ = "yavuzbektas@gmail.com"
 __linkedin__ = "https://www.linkedin.com/in/yavuz-bekta%C5%9F-28659642/"
 __release_date__ = "2020.05.01"
-__github__ = ""
+__github__ = "https://github.com/yavuzbektas/Stock_Program"
 # #######################################
 import sys, os,shutil,datetime
 from GUI.mainWindow import Ui_mainwindow

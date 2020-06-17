@@ -1,10 +1,10 @@
 # databese'in yedeğini almak için bir ayar yapılabilinir.
 # aynı şekilde belirli periyotlarda yedekleme yapılabilinir.
-# dil değişimi yapılacak
+# dil değişimi yapılacak. sadece tablo baslıkları kaldı
 # tam ekran olabilme özelliği getir.
 # tüm hataları br log dosyasına tutsun
 # temel ayarların oldugu bir config dossyası yaratıp onunla temel program ayarları okunsun
-#
+# obje isimlerini generic bir fonksiyon oalrak yaz
 #
 
 
