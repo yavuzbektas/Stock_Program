@@ -1,0 +1,29 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>/staticfiles/icons/books.png</file>
+    <file>/staticfiles/icons/door_exit.png</file>
+    <file>staticfiles/icons/door_exit2.png</file>
+    <file>staticfiles/icons/factory.png</file>
+    <file>staticfiles/icons/intern1.png</file>
+    <file>staticfiles/icons/intern2.png</file>
+    <file>staticfiles/icons/Lessons.png</file>
+    <file>staticfiles/icons/login.png</file>
+    <file>staticfiles/icons/mezun.png</file>
+    <file>staticfiles/icons/repport.png</file>
+    <file>staticfiles/icons/setting.png</file>
+    <file>staticfiles/icons/student2.png</file>
+    <file>staticfiles/icons/students1.png</file>
+    <file>staticfiles/icons/teacher.png</file>
+    <file>staticfiles/icons/Theme.png</file>
+    <file>staticfiles/icons/today.png</file>
+    <file>staticfiles/icons/user2.png</file>
+    <file>staticfiles/icons/Users.png</file>
+    <file>staticfiles/icons/warning.png</file>
+    <file>staticfiles/icons/checked.png</file>
+    <file>staticfiles/icons/managment.png</file>
+    <file>staticfiles/icons/managment2.png</file>
+    <file>staticfiles/icons/managment3.png</file>
+    <file>staticfiles/icons/yavuz (1).png</file>
+    <file>staticfiles/icons/yavuz (2).png</file>
+</qresource>
+</RCC>

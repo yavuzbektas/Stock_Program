@@ -1,0 +1,12 @@
+# this is a configuration file.
+# please dont change anything manually.
+#----------------------------------------
+SERVER_SETTING
+host:localhost
+username:root
+password:1234567890
+DB_NAME:stockDB
+-----------------------------
+LANGUAGE:turkish
+----------------------------------------------
+---------
