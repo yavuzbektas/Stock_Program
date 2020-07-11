@@ -7,7 +7,7 @@ __linkedin__ = "https://www.linkedin.com/in/yavuz-bekta%C5%9F-28659642/"
 __release_date__ = "2020.05.01"
 __github__ = "https://github.com/yavuzbektas/Stock_Program"
 # #######################################
-import sys, os,shutil,datetime
+import sys, os,shutil,datetime,time
 from GUI.mainWindow import Ui_mainwindow
 from GUI.logs import Ui_Form as log_dialog
 from GUI.login import Ui_Dialog as login_dialog
@@ -24,6 +24,8 @@ BASE_PATH = os.getcwd()
 IMAGE_DIR = (BASE_PATH + '\\media\\images\\') # resimler ileride serverda databasein oldugu yerde olacaktır.
 FILE_DIR = (BASE_PATH + '\\media\\files\\') #
 REPORT_DIR = (BASE_PATH + '\\media\\Reports\\')
+BACKUP_DIR = (BASE_PATH + '\\media\\backup\\')
+AUTO_BACKUP = "NO"
 SETTING_DIR = (BASE_PATH + '\\staticfiles\\')
 SETTING_FILE = "settings.txt"
 SERVER_SETTING = {
@@ -90,6 +92,7 @@ def read_parameter(line_number=4):
         return parameter
     except Exception as err:
         print(err)
+        mylog(err, type="error")
         return ""
 def write_parameter(line_number=9,value=""):
 
@@ -106,7 +109,7 @@ def write_setting_file(mylines):
         for i in range(len(mylines)):
 
             myfile.writelines(mylines[i]+"\n")
-def mylog():
+def mylog(msg,type="info"):
 
     # create logger
     my_logger = logging.getLogger("Stock-V0")
@@ -117,12 +120,66 @@ def mylog():
                         filename=LOG_FILENAME,
                         filemode='a')
     # Add the log message handler to the logger
-    handler = logging.handlers.RotatingFileHandler(
-        LOG_FILENAME, maxBytes=20, backupCount=5)
-    my_logger.addHandler(handler)
-    my_logger.info("gdfgsdfgsdfgsd")
+    # handler = logging.handlers.RotatingFileHandler(
+    #     LOG_FILENAME, maxBytes=20, backupCount=5)
+    # my_logger.addHandler(handler)
+    if type=="info":
+        my_logger.info(msg)
+    elif type=="warning":
+        my_logger.warning(msg)
+    elif type=="debug":
+        my_logger.debug(msg)
+    elif type=="error":
+        my_logger.error(msg)
+    else :
+        my_logger.info(msg)
+def error_msjbox( text, title):
+    msgBox = QMessageBox()
+    msgBox.setIcon(QMessageBox.Warning)
+    msgBox.setText(text)
+    msgBox.setWindowTitle(title)
+    msgBox.setStandardButtons(QMessageBox.Ok)
+    mylog(text, type="error")
+    return msgBox.exec()
+def update_msjbox(text,title):
+    msgBox = QMessageBox()
+    msgBox.setIcon(QMessageBox.Information)
+    msgBox.setText(text)
+    msgBox.setWindowTitle(title)
+    msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
 
+    return msgBox.exec()
+def delete_msjbox(text,title):
+    msgBox = QMessageBox()
+    msgBox.setIcon(QMessageBox.Warning)
+    msgBox.setText(text)
+    msgBox.setWindowTitle(title)
+    msgBox.setStandardButtons(QMessageBox.Discard | QMessageBox.Cancel)
+    buttonY = msgBox.button(QMessageBox.Discard)
+    buttonY.setText('Delete')
+    return msgBox.exec()
+def table_update(data,headers,sender):
+    sender.clear()
+    sender.setColumnCount(len(headers))
+    sender.setHorizontalHeaderLabels(headers)
+    sender.setRowCount(0)
+    if data:
+        sender.insertRow(0)
+        # self.ui.tableWidget_3.insertColumn(0)
 
+        for row, form in enumerate(data):
+
+            for column, item in enumerate(form):
+                sender.setItem(row, column, QTableWidgetItem(str(item)))
+                column += 1
+            row_pos = sender.rowCount()
+            sender.insertRow(row_pos)
+
+    else:
+        sender.clear()
+def clear_fields(*sender):
+    for le in sender:
+        le.setText("")
 LANGUAGE = read_parameter(9)
 
 class MyWindow(QMainWindow):
@@ -143,6 +200,10 @@ class MyWindow(QMainWindow):
         self.ui.tabWidget_2.setCurrentIndex(0)
         self.ui.tabWidget_3.setCurrentIndex(0)
         self.ui.label_14.setVisible(False)
+
+        if AUTO_BACKUP=="YES" :
+            self.backup_db()
+
 
     def handle_button(self):
         self.ui.actionStock.triggered.connect(self.materials_search_tab)
@@ -221,7 +282,7 @@ class MyWindow(QMainWindow):
         self.ui.pushButton_47.clicked.connect(self.filter_material_table)
         self.ui.tabWidget_5.currentChanged.connect(self.read_tabs_index)
 
-        self.ui.lineEdit_65.textChanged.connect(self.final_stockcode_generate)
+        # self.ui.lineEdit_65.textChanged.connect(self.final_stockcode_generate)
         self.ui.lineEdit_56.textChanged.connect(self.final_stockcode_generate)
         self.ui.lineEdit_57.textChanged.connect(self.final_stockcode_generate)
         self.ui.lineEdit_58.textChanged.connect(self.final_stockcode_generate)
@@ -261,23 +322,13 @@ class MyWindow(QMainWindow):
         self.ui.pushButton_62.clicked.connect(self.save_qrcode_png)
         self.ui.pushButton_67.clicked.connect(self.translate)
         self.ui.pushButton_66.clicked.connect(self.translate)
-    def update_msjbox(self,text,title):
-        msgBox = QMessageBox(self)
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText(text)
-        msgBox.setWindowTitle(title)
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        self.ui.pushButton_70.clicked.connect(self.save_dbfile)
+        self.ui.pushButton_71.clicked.connect(self.export_stocks)
+        self.ui.pushButton_69.clicked.connect(lambda x:mylog("Houston, we have a problem",type="error"))
 
-        return msgBox.exec()
-    def delete_msjbox(self,text,title):
-        msgBox = QMessageBox(self)
-        msgBox.setIcon(QMessageBox.Warning)
-        msgBox.setText(text)
-        msgBox.setWindowTitle(title)
-        msgBox.setStandardButtons(QMessageBox.Discard | QMessageBox.Cancel)
-        buttonY = msgBox.button(QMessageBox.Discard)
-        buttonY.setText('Delete')
-        return msgBox.exec()
+        self.ui.pushButton_12.clicked.connect(self.theme_1)
+        self.ui.pushButton_13.clicked.connect(self.theme_2)
+        self.ui.pushButton_14.clicked.connect(self.theme_3)
     # ================ TABS CONTROL  ===========================================
     def user_admin_check(self):
         if self.ui.lineEdit_82.text()=="Admin":
@@ -399,10 +450,22 @@ class MyWindow(QMainWindow):
 
         self.window3.setWindowTitle("About Page")
         self.window3.show()
+    def save_dbfile(self):
 
-
+        name, _ = QFileDialog.getSaveFileName(self, "Save Database File", dir='stockDB')
+        try:
+            shutil.copyfile('stockDB', name)
+        except Exception as err:
+            print(err)
+            mylog(err, type="error")
+    def backup_db(self):
+        try:
+            noww= datetime.datetime.now()
+            shutil.copyfile('stockDB', BACKUP_DIR + str(noww.year)+"_"+str(noww.month)+"_"+ str(noww.day)+"_" + str(noww.hour)+"_"+str(noww.minute)+"_"+str(noww.second))
+        except Exception as err:
+            print(err)
+            mylog(err, type="error")
     # ================ SUBTABS CONTROL  ===========================================
-
     def read_tabs_index(self):
         tab1 = self.ui.tabWidget.currentIndex()
         tab2 = self.ui.tabWidget_2.currentIndex()
@@ -411,44 +474,43 @@ class MyWindow(QMainWindow):
         self.toptabs_color( tab1)
         self.subtabs_color(tab2)
         if tab2==0:
-            alldata = self.db.show_all_room()
-            self.ui.tableWidget_3.clear()
-            self.table3_update(alldata, headers)
+            data = self.db.show_all_room()
+            table_update(data, headers, self.ui.tableWidget_3)
             self.ui.tabWidget_3.close()
         elif tab2==1:
-            alldata=self.db.showall_cabinet_type()
-            self.cabinetype_table_update(alldata, headers_cabinet_type)
-            self.ui.tabWidget_3.close()
+            data=self.db.showall_cabinet_type()
+            table_update(data, headers_cabinet_type, self.ui.tableWidget_4)
 
-        elif tab2 == 2:
-            alldata = self.db.showall_cabinet()
-            self.cabinet_table_update(alldata, headers_cabinet)
             self.ui.tabWidget_3.close()
-            self.update_shelf_popup(alldata)
-        elif tab2 == 3:
-            alldata = self.db.showall_shelf()
-            self.shelf_table_update(alldata, headers_shelf)
-            self.ui.groupBox_13.close()
+        elif tab2 == 2:
             data = self.db.showall_cabinet()
+            table_update(data, headers_cabinet, self.ui.tableWidget_5)
+            self.ui.tabWidget_3.close()
             self.update_shelf_popup(data)
+        elif tab2 == 3:
+            data = self.db.showall_shelf()
+            table_update(data, headers_shelf, self.ui.tableWidget_8)
+            self.ui.groupBox_13.close()
+            data2 = self.db.showall_cabinet()
+            self.update_shelf_popup(data2)
         else:
             self.ui.tableWidget_3.clear()
             self.ui.tabWidget_3.close()
 
         if tab4 == 0:
 
-            alldata = self.db.showall_material()
-            self.material_table_update(alldata, headers_material)
+            data = self.db.showall_material()
+            table_update(data, headers_material, self.ui.tableWidget_10)
 
         elif tab4 == 1:
-            alldata = self.db.showall_material_type()
-            self.material_type_table_update(alldata, headers_material_type)
+            data = self.db.showall_material_type()
+            table_update(data, headers_material_type, self.ui.tableWidget_11)
         else:
             pass
 
         if tab5 == 0:
-            alldata = self.db.showall_stock()
-            self.stock_table_update(alldata, headers_stock)
+            data = self.db.showall_stock()
+            table_update(data, headers_stock, self.ui.tableWidget_13)
         else:
             pass
     def room_edit_tab(self):
@@ -462,18 +524,18 @@ class MyWindow(QMainWindow):
     def stock_material_call_tab(self):
         self.ui.tabWidget_5.setCurrentIndex(1)
         data = self.db.showall_material()
-        self.table_update(data, headers_material, self.ui.tableWidget_12)
+        table_update(data, headers_material, self.ui.tableWidget_12)
     def stock_room_call_tab(self):
         data = self.db.show_all_room()
-        self.table_update(data, headers, self.ui.tableWidget_14)
+        table_update(data, headers, self.ui.tableWidget_14)
         self.ui.tabWidget_5.setCurrentIndex(2)
     def stock_cabinet_call_tab(self):
         data = self.db.showfilter_cabinet(filter_value="",room=self.ui.lineEdit_57.text(),)
-        self.table_update(data, headers_cabinet, self.ui.tableWidget_15)
+        table_update(data, headers_cabinet, self.ui.tableWidget_15)
         self.ui.tabWidget_5.setCurrentIndex(3)
     def stock_shelf_call_tab(self):
         data = self.db.showfilter_shelf(filter_value="",room=self.ui.lineEdit_57.text(),cabinet=self.ui.lineEdit_58.text())
-        self.table_update(data, headers_shelf, self.ui.tableWidget_16)
+        table_update(data, headers_shelf, self.ui.tableWidget_16)
         self.ui.tabWidget_5.setCurrentIndex(4)
     # ===========================================================
 
@@ -495,51 +557,49 @@ class MyWindow(QMainWindow):
 
         if self.roomname=="" or self.roomnumber =="":
             self.ui.statusbar.showMessage('Please fill the blanks')
-            warning = QMessageBox.warning(self, 'Value Error', 'Please fill the blanks', QMessageBox.Ok)
+            error_msjbox(title='Value Error',text='Please fill the blanks')
+
             return False
         data = self.check_room()
         if data!=[]:
-
-            warning = QMessageBox.warning(self, 'Duplicate Error', 'this record has already registered', QMessageBox.Ok)
+            error_msjbox(title='Duplicate Error', text='this record has already registered')
             self.ui.statusbar.showMessage('Please change your data')
         else:
             self.db.insert_room((self.roomname,self.roomdesc,self.roomnumber,self.staff_name))
             self.ui.statusbar.showMessage('The record added succesefully ')
         self.clear_room_fields()
-        alldata = self.db.show_all_room()
-        self.table3_update(alldata, headers)
+        data = self.db.show_all_room()
+        table_update(data, headers, self.ui.tableWidget_3)
     def update_data_room_table(self):
         self.read_room_data()
         values=(self.roomname,self.roomdesc,self.roomnumber,self.staff_name,int(self.room_ID))
         if self.room_ID!="":
-            returnValue = self.update_msjbox(
+            returnValue = update_msjbox(
                 text="{} Nolu kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.room_ID),
                 title="DİKKAT - Veriler güncellenecek")
 
             if returnValue == QMessageBox.Ok:
                 self.db.update_room(values)
                 self.clear_room_fields()
-                alldata = self.db.show_all_room()
-                self.table3_update(alldata, headers)
+                data = self.db.show_all_room()
+                table_update(data, headers, self.ui.tableWidget_3)
+                mylog(msg="{} Nolu Oda kayıt güncellendi".format(self.room_ID), type="info")
     def delete_data_room_table(self):
         self.read_room_data()
         if self.room_ID != '':
-            returnValue = self.delete_msjbox(
+            returnValue = delete_msjbox(
                 text="{} Nolu kayıt silinecektir.\nDevam Etmek için Delete tuşuna basın".format(self.room_ID),
                 title="DİKKAT - Veriler silinecektir")
 
             if returnValue == QMessageBox.Discard:
                 self.db.delete_room(int(self.room_ID))
                 self.clear_room_fields()
-                alldata = self.db.show_all_room()
-                self.table3_update(alldata, headers)
+                data = self.db.show_all_room()
+                table_update(data, headers, self.ui.tableWidget_3)
     def clear_room_fields(self):
-        self.ui.lineEdit_12.setText("")
-        self.ui.lineEdit_13.setText("")
-        self.ui.lineEdit_16.setText("")
-        self.ui.lineEdit_14.setText("")
-        self.ui.lineEdit_18.setText("")
-        self.ui.lineEdit_17.setText("")
+        clear_fields(self.ui.lineEdit_12,self.ui.lineEdit_13,
+                          self.ui.lineEdit_14,self.ui.lineEdit_16,
+                          self.ui.lineEdit_17,self.ui.lineEdit_18)
         self.read_room_data()
     def callback_data_from_room_table_widget(self):
         self.room_id = int(self.ui.tableWidget_3.item(self.ui.tableWidget_3.currentRow(), 0).text())
@@ -555,34 +615,15 @@ class MyWindow(QMainWindow):
             return True
         else:
             return False
-    def table3_update(self,data,headers):
-        self.ui.tableWidget_3.clear()
-        self.ui.tableWidget_3.setColumnCount(len(headers))
-        self.ui.tableWidget_3.setHorizontalHeaderLabels(headers)
-        self.ui.tableWidget_3.setRowCount(0)
-        if data:
-            self.ui.tableWidget_3.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
+    # ====================CAbinet Type =================================
 
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_3.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_3.rowCount()
-                self.ui.tableWidget_3.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_3.clear()
-
-    # ===========================================================
     def read_cabinet_type(self):
         self.cabinet_type_ID = self.ui.lineEdit_15.text()
         self.cabinet_type_name = self.ui.lineEdit_23.text()
 
         if self.cabinet_type_name == "":
             self.ui.statusbar.showMessage('Please fill the blanks')
-            warning = QMessageBox.warning(self, 'Value Error', 'Please fill the blanks', QMessageBox.Ok)
+            error_msjbox(title='Value Error', text='Please fill the blanks')
             return 0
         elif self.cabinet_type_name !="" and self.cabinet_type_ID !="" :
             return 1
@@ -592,16 +633,14 @@ class MyWindow(QMainWindow):
         if self.read_cabinet_type()==2:
             data = self.db.check_cabinet_type((self.cabinet_type_name))
             if data != None:
-
-                warning = QMessageBox.warning(self, 'Duplicate Error', 'this record has already registered',
-                                              QMessageBox.Ok)
+                error_msjbox(title='Duplicate Error', text='this record has already registered')
                 self.ui.statusbar.showMessage('Please change your data')
             else:
                 self.db.insert_cabinet_type((self.cabinet_type_name))
                 self.ui.statusbar.showMessage('The record added successfully ')
 
-            alldata = self.db.showall_cabinet_type()
-            self.cabinetype_table_update(alldata, headers_cabinet_type)
+            data = self.db.showall_cabinet_type()
+            table_update(data, headers_cabinet_type, self.ui.tableWidget_4)
         elif self.read_cabinet_type()==1:
             self.update_data_cabinet_type_table()
         else:
@@ -617,54 +656,34 @@ class MyWindow(QMainWindow):
             return True
         else:
             return False
-    def cabinetype_table_update(self,data,headers):
-        self.ui.tableWidget_4.clear()
-        self.ui.tableWidget_4.setColumnCount(len(headers))
-        self.ui.tableWidget_4.setHorizontalHeaderLabels(headers)
-        self.ui.tableWidget_4.setRowCount(0)
-        if data:
-            self.ui.tableWidget_4.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_4.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_4.rowCount()
-                self.ui.tableWidget_4.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_4.clear()
     def delete_data_cabinettype_table(self):
 
         if self.read_cabinet_type() == 1:
-            returnValue = self.delete_msjbox(
+            returnValue = delete_msjbox(
                 text="{} Nolu kayıt silinecektir.\nDevam Etmek için Delete tuşuna basın".format(self.cabinet_type_ID),
                 title="DİKKAT - Veriler silinecektir")
 
             if returnValue == QMessageBox.Discard:
                 self.db.delete_cabinet_type(int(self.cabinet_type_ID))
                 self.clear_cabinettype_fields()
-                alldata = self.db.showall_cabinet_type()
-                self.cabinetype_table_update(alldata, headers_cabinet_type)
+                data = self.db.showall_cabinet_type()
+                table_update(data, headers_cabinet_type, self.ui.tableWidget_4)
     def update_data_cabinet_type_table(self):
         self.read_cabinet_type()
         values = (self.cabinet_type_name, int(self.cabinet_type_ID))
         if self.cabinet_type_ID != "":
-            returnValue = self.update_msjbox(
+            returnValue = update_msjbox(
                 text="{} Nolu kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.cabinet_type_ID),
                 title="DİKKAT - Veriler güncellenecek")
 
             if returnValue == QMessageBox.Ok:
                 self.db.update_cabinet_type(values)
                 self.clear_cabinettype_fields()
-                alldata = self.db.showall_cabinet_type()
-                self.cabinetype_table_update(alldata, headers_cabinet_type)
+                data = self.db.showall_cabinet_type()
+                table_update(data, headers_cabinet_type, self.ui.tableWidget_4)
+                mylog(msg="{} Nolu Kabin Tipi kaydı güncellendi".format(self.cabinet_type_ID), type="info")
     def clear_cabinettype_fields(self):
-        self.ui.lineEdit_15.setText("")
-        self.ui.lineEdit_23.setText("")
-
+        clear_fields(self.ui.lineEdit_15, self.ui.lineEdit_23)
 # ===========================================================
     def read_cabinet(self):
         self.cabinet_ID = self.ui.lineEdit_19.text()
@@ -676,7 +695,7 @@ class MyWindow(QMainWindow):
 
         if self.cabinet_code == "" or self.cabinet_type_ID =="" or self.cabinet_room_ID =="":
             self.ui.statusbar.showMessage('Please fill the blanks')
-            warning = QMessageBox.warning(self, 'Value Error', 'Please fill the blanks', QMessageBox.Ok)
+            error_msjbox(title='Value Error', text='Please fill the blanks')
             return 0
         elif self.cabinet_code !="" and self.cabinet_ID !="" :
             return 1
@@ -686,16 +705,15 @@ class MyWindow(QMainWindow):
         if self.read_cabinet()==2:
             data = self.db.check_cabinet((self.cabinet_code))
             if data != None:
-
-                warning = QMessageBox.warning(self, 'Duplicate Error', 'this record has already registered',
-                                              QMessageBox.Ok)
+                error_msjbox(title='Duplicate Error', text='this record has already registered')
                 self.ui.statusbar.showMessage('Please change your data')
             else:
                 self.db.insert_cabinet((self.cabinet_code,int(self.cabinet_type_ID),int(self.cabinet_room_ID)))
                 self.ui.statusbar.showMessage('The record added successfully ')
 
-            alldata = self.db.showall_cabinet()
-            self.cabinet_table_update(alldata, headers_cabinet)
+            data = self.db.showall_cabinet()
+            table_update(data, headers_cabinet, self.ui.tableWidget_5)
+
             self.clear_cabinet_fields()
 
 
@@ -717,60 +735,39 @@ class MyWindow(QMainWindow):
             return True
         else:
             return False
-    def cabinet_table_update(self,data,headers):
-        self.ui.tableWidget_5.clear()
-        self.ui.tableWidget_5.setColumnCount(len(headers))
-        self.ui.tableWidget_5.setHorizontalHeaderLabels(headers)
-        self.ui.tableWidget_5.setRowCount(0)
-        if data:
-            self.ui.tableWidget_5.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_5.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_5.rowCount()
-                self.ui.tableWidget_5.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_5.clear()
     def delete_data_cabinet_table(self):
 
         if self.read_cabinet() == 1:
-            returnValue = self.delete_msjbox(
+            returnValue = delete_msjbox(
                 text="{} Nolu kayıt silinecektir.\nDevam Etmek için Delete tuşuna basın".format(self.cabinet_ID),
                 title="DİKKAT - Veriler silinecektir")
 
             if returnValue == QMessageBox.Discard:
                 self.db.delete_cabinet(int(self.cabinet_ID))
                 self.clear_cabinet_fields()
-                alldata = self.db.showall_cabinet()
-                self.cabinet_table_update(alldata, headers_cabinet)
+                data = self.db.showall_cabinet()
+                table_update(data, headers_cabinet, self.ui.tableWidget_5)
                 self.clear_cabinet_fields()
     def update_data_cabinet_table(self):
         self.read_cabinet()
         values = (self.cabinet_code,int(self.cabinet_type_ID),int(self.cabinet_room_ID), int(self.cabinet_ID))
         if self.cabinet_ID != "":
 
-            returnValue = self.update_msjbox(
+            returnValue = update_msjbox(
                 text="{} Nolu kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.cabinet_ID),
                 title="DİKKAT - Veriler güncellenecek")
 
             if returnValue == QMessageBox.Ok:
                 self.db.update_cabinet(values)
                 self.clear_cabinet_fields()
-                alldata = self.db.showall_cabinet()
-                self.cabinet_table_update(alldata, headers_cabinet)
+                data = self.db.showall_cabinet()
+                table_update(data, headers_cabinet, self.ui.tableWidget_5)
                 self.clear_cabinet_fields()
+                mylog(msg="{} Nolu Kabin kaydı güncellendi".format(self.cabinet_ID), type="info")
     def clear_cabinet_fields(self):
-        self.ui.lineEdit_19.setText("")
-        self.ui.lineEdit_25.setText("")
-        self.ui.lineEdit_33.setText("")
-        self.ui.lineEdit_26.setText("")
-        self.ui.lineEdit_27.setText("")
-        self.ui.lineEdit_34.setText("")
+        clear_fields(self.ui.lineEdit_19, self.ui.lineEdit_25,
+                          self.ui.lineEdit_33, self.ui.lineEdit_26,
+                          self.ui.lineEdit_27, self.ui.lineEdit_34)
         self.ui.tabWidget_3.close()
     def show_cabin_popup(self):
         if self.ui.tabWidget_3.isHidden():
@@ -783,25 +780,7 @@ class MyWindow(QMainWindow):
             self.ui.pushButton_16.setText("Select")
     def update_cabinet_popup(self):
         data = self.db.showall_cabinet_type()
-
-        self.ui.tableWidget_6.clear()
-        self.ui.tableWidget_6.setColumnCount(len(headers_cabinet_type))
-        self.ui.tableWidget_6.setHorizontalHeaderLabels(headers_cabinet_type)
-        self.ui.tableWidget_6.setRowCount(0)
-        if data:
-            self.ui.tableWidget_6.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_6.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_6.rowCount()
-                self.ui.tableWidget_6.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_6.clear()
+        table_update(data, headers_cabinet_type, self.ui.tableWidget_6)
     def data_from_cabinettype(self):
         self.cabinet_type_ID = int(self.ui.tableWidget_6.item(self.ui.tableWidget_6.currentRow(), 0).text())
 
@@ -813,28 +792,9 @@ class MyWindow(QMainWindow):
             return True
         else:
             return False
-
     def update_room_popup(self):
         data = self.db.show_all_room()
-
-        self.ui.tableWidget_7.clear()
-        self.ui.tableWidget_7.setColumnCount(len(headers))
-        self.ui.tableWidget_7.setHorizontalHeaderLabels(headers)
-        self.ui.tableWidget_7.setRowCount(0)
-        if data:
-            self.ui.tableWidget_7.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_7.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_7.rowCount()
-                self.ui.tableWidget_7.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_7.clear()
+        table_update(data, headers, self.ui.tableWidget_7)
     def data_from_room(self):
         self.room_ID = int(self.ui.tableWidget_7.item(self.ui.tableWidget_7.currentRow(), 0).text())
 
@@ -863,7 +823,8 @@ class MyWindow(QMainWindow):
 
         if self.shelf_code == "" or self.shelf_cabinet_ID == "" or self.shelf_room_ID == "":
             self.ui.statusbar.showMessage('Please fill the blanks')
-            warning = QMessageBox.warning(self, 'Value Error', 'Please fill the blanks', QMessageBox.Ok)
+            error_msjbox(title='Value Error', text='Please fill the blanks')
+
             print(0)
             return 0
         elif self.shelf_code != "" and self.shelf_ID != "":
@@ -874,16 +835,14 @@ class MyWindow(QMainWindow):
         if self.read_shelf()==2:
             data = self.db.check_shelf((self.shelf_code))
             if data != None:
-
-                warning = QMessageBox.warning(self, 'Duplicate Error', 'this record has already registered',
-                                              QMessageBox.Ok)
+                error_msjbox(title='Duplicate Error', text='this record has already registered')
                 self.ui.statusbar.showMessage('Please change your data')
             else:
                 self.db.insert_shelf((self.shelf_code,int(self.shelf_cabinet_ID)))
                 self.ui.statusbar.showMessage('The record added successfully ')
 
-            alldata = self.db.showall_shelf()
-            self.shelf_table_update(alldata, headers_shelf)
+            data = self.db.showall_shelf()
+            table_update(data, headers_shelf, self.ui.tableWidget_8)
             self.clear_shelf_fields()
 
 
@@ -905,60 +864,37 @@ class MyWindow(QMainWindow):
             return True
         else:
             return False
-    def shelf_table_update(self,data,headers):
-        self.ui.tableWidget_8.clear()
-        self.ui.tableWidget_8.setColumnCount(len(headers))
-        self.ui.tableWidget_8.setHorizontalHeaderLabels(headers)
-        self.ui.tableWidget_8.setRowCount(0)
-        if data:
-            self.ui.tableWidget_8.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_8.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_8.rowCount()
-                self.ui.tableWidget_8.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_8.clear()
     def delete_data_shelf_table(self):
 
         if self.read_shelf() == 1:
-            returnValue = self.delete_msjbox(
+            returnValue = delete_msjbox(
                 text="{} Nolu kayıt silinecektir.\nDevam Etmek için Delete tuşuna basın".format(self.shelf_ID),
                 title="DİKKAT - Veriler silinecektir")
 
             if returnValue == QMessageBox.Discard:
                 self.db.delete_shelf(int(self.shelf_ID))
-
-                alldata = self.db.showall_shelf()
-                self.shelf_table_update(alldata, headers_shelf)
+                data = self.db.showall_shelf()
+                table_update(data, headers_shelf, self.ui.tableWidget_8)
                 self.clear_shelf_fields()
     def update_data_shelf_table(self):
         self.read_shelf()
         values = (self.shelf_code,int(self.shelf_cabinet_ID),self.shelf_ID)
         if self.shelf_ID != "":
-            returnValue = self.update_msjbox(
+            returnValue = update_msjbox(
                 text="{} Nolu kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.shelf_ID),
                 title="DİKKAT - Veriler güncellenecek")
 
             if returnValue == QMessageBox.Ok:
                 self.db.update_shelf(values)
 
-                alldata = self.db.showall_shelf()
-                self.shelf_table_update(alldata, headers_shelf)
+                data = self.db.showall_shelf()
+                table_update(data, headers_shelf, self.ui.tableWidget_8)
                 self.clear_shelf_fields()
-
+                mylog(msg="{} Nolu Raf kaydı güncellendi".format(self.shelf_ID), type="info")
     def clear_shelf_fields(self):
-        self.ui.lineEdit_22.setText("")
-        self.ui.lineEdit_28.setText("")
-        self.ui.lineEdit_29.setText("")
-        self.ui.lineEdit_31.setText("")
-        self.ui.lineEdit_32.setText("")
-        self.ui.lineEdit_30.setText("")
+        clear_fields(self.ui.lineEdit_22, self.ui.lineEdit_28,
+                          self.ui.lineEdit_29, self.ui.lineEdit_31,
+                          self.ui.lineEdit_32, self.ui.lineEdit_30)
         self.ui.groupBox_13.close()
     def show_shelf_popup(self):
         if self.ui.groupBox_13.isHidden():
@@ -970,26 +906,7 @@ class MyWindow(QMainWindow):
             self.ui.groupBox_13.close()
             self.ui.pushButton_28.setText("Select")
     def update_shelf_popup(self,data):
-
-
-        self.ui.tableWidget_9.clear()
-        self.ui.tableWidget_9.setColumnCount(len(headers_cabinet))
-        self.ui.tableWidget_9.setHorizontalHeaderLabels(headers_cabinet)
-        self.ui.tableWidget_9.setRowCount(0)
-        if data:
-            self.ui.tableWidget_9.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_9.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_9.rowCount()
-                self.ui.tableWidget_9.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_9.clear()
+        table_update(data, headers_cabinet, self.ui.tableWidget_9)
     def data_from_cabinet(self):
         self.shelf_cabinet_ID = int(self.ui.tableWidget_9.item(self.ui.tableWidget_9.currentRow(), 0).text())
 
@@ -1003,17 +920,20 @@ class MyWindow(QMainWindow):
         else:
             return False
     def filter_shelf_table(self):
-        self.filter_val_shelf=self.ui.lineEdit_54.text()
-        alldata = self.db.showfilter_shelf(filter_value=self.filter_val_shelf)
-        self.shelf_table_update(alldata, headers_shelf)
+        if self.ui.lineEdit_30.text()=="" or self.ui.lineEdit_29.text()=="" :
+            self.ui.statusbar.showMessage('Please select a cabinet before search operation')
+            error_msjbox(title='Value Error', text='Please select a cabinet before search operation')
+        else:
+            self.filter_val_shelf=self.ui.lineEdit_54.text()
+            data = self.db.showfilter_shelf(room=self.ui.lineEdit_30.text(),cabinet=self.ui.lineEdit_29.text(),filter_value=self.filter_val_shelf)
+            table_update(data, headers_shelf, self.ui.tableWidget_8)
 # ==========================================================================
     def read_material_type(self):
         self.mat_type_ID = self.ui.lineEdit_46.text()
         self.mat_type_name = self.ui.lineEdit_49.text()
         if self.mat_type_name == "":
             self.ui.statusbar.showMessage('Please fill the blanks')
-            warning = QMessageBox.warning(self, 'Value Error', 'Please fill the blanks', QMessageBox.Ok)
-
+            error_msjbox(title='Value Error', text='Please fill the blanks')
             return 0
         elif self.mat_type_name != "" and self.mat_type_ID != "":
             return 1
@@ -1024,16 +944,14 @@ class MyWindow(QMainWindow):
         if result==2:
             data = self.db.check_material_type((self.mat_type_name))
             if data != None:
-
-                warning = QMessageBox.warning(self, 'Duplicate Error', 'this record has already registered',
-                                              QMessageBox.Ok)
+                error_msjbox(title='Duplicate Error', text='this record has already registered')
                 self.ui.statusbar.showMessage('Please change your data')
             else:
                 self.db.insert_material_type((self.mat_type_name))
                 self.ui.statusbar.showMessage('The record added successfully ')
 
-            alldata = self.db.showall_material_type()
-            self.material_type_table_update(alldata, headers_material_type)
+            data = self.db.showall_material_type()
+            table_update(data, headers_material_type, self.ui.tableWidget_11)
             self.clear_material_type_fields()
 
         elif result==1:
@@ -1051,53 +969,34 @@ class MyWindow(QMainWindow):
             return True
         else:
             return False
-    def material_type_table_update(self,data,headers):
-        self.ui.tableWidget_11.clear()
-        self.ui.tableWidget_11.setColumnCount(len(headers))
-        self.ui.tableWidget_11.setHorizontalHeaderLabels(headers)
-        self.ui.tableWidget_11.setRowCount(0)
-        if data:
-            self.ui.tableWidget_11.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_11.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_11.rowCount()
-                self.ui.tableWidget_11.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_11.clear()
     def delete_data_material_type_table(self):
 
         if self.read_material_type() == 1:
-            returnValue = self.delete_msjbox(
+            returnValue = delete_msjbox(
                 text="{} Nolu kayıt silinecektir.\nDevam Etmek için Delete tuşuna basın".format(self.mat_type_ID),
                 title="DİKKAT - Veriler silinecektir")
 
             if returnValue == QMessageBox.Discard:
                 self.db.delete_material_type(int(self.mat_type_ID))
                 self.clear_material_type_fields()
-                alldata = self.db.showall_material_type()
-                self.material_type_table_update(alldata, headers_material_type)
+                data = self.db.showall_material_type()
+                table_update(data, headers_material_type, self.ui.tableWidget_11)
     def update_data_material_type_table(self):
         self.read_material_type()
         values = (self.mat_type_name, int(self.mat_type_ID))
         if self.mat_type_ID != "":
-            returnValue = self.update_msjbox(
+            returnValue = update_msjbox(
                 text="{} Nolu kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.mat_type_ID),
                 title="DİKKAT - Veriler güncellenecek")
 
             if returnValue == QMessageBox.Ok:
                 self.db.update_material_type(values)
                 self.clear_material_type_fields()
-                alldata = self.db.showall_material_type()
-                self.material_type_table_update(alldata, headers_material_type)
+                data = self.db.showall_material_type()
+                table_update(data, headers_material_type, self.ui.tableWidget_11)
+                mylog(msg="{} Nolu Malzeme Tipi Kaydı güncellendi".format(self.mat_type_ID), type="info")
     def clear_material_type_fields(self):
-        self.ui.lineEdit_46.setText("")
-        self.ui.lineEdit_49.setText("")
+        clear_fields(self.ui.lineEdit_46, self.ui.lineEdit_49)
     def data_from_material_type(self):
 
 
@@ -1112,12 +1011,12 @@ class MyWindow(QMainWindow):
             return False
     def filter_material_type_table(self):
         self.filter_val_material_type=self.ui.lineEdit_53.text()
-        alldata = self.db.showfilter_material_type(self.filter_val_material_type)
-        self.material_type_table_update(alldata, headers_material_type)
+        data = self.db.showfilter_material_type(self.filter_val_material_type)
+        table_update(data, headers_material_type, self.ui.tableWidget_11)
 # ==========================================================================
     def image_file_dialog_open_material(self):
         if not self.ui.lineEdit_45.text():
-            warning = QMessageBox.warning(self, 'Missing Data', ' Please enter "Code-1" before add a picture', QMessageBox.Ok)
+            error_msjbox(title='Missing Data', text=' Please enter "Code-1" before add a picture')
             self.statusBar().showMessage('Missing Data')
         else:
             self.filepath, _ = QFileDialog.getOpenFileName(filter='Image File *.png , *.jpg ')
@@ -1136,7 +1035,7 @@ class MyWindow(QMainWindow):
             shutil.copyfile(oldfilepath, IMAGE_DIR + new_file_name)
         except Exception as err:
             print(err)
-
+            mylog(err, type="error")
     def load_image_from_location(self):
         picture = QPixmap(IMAGE_DIR+self.ui.lineEdit_44.text())
         self.ui.label_49.setPixmap(picture)
@@ -1159,8 +1058,7 @@ class MyWindow(QMainWindow):
         if self.material_type_ID == "" or self.material_name == "" or self.material_code1 == ""\
                 or self.material_property1 =="" :
             self.ui.statusbar.showMessage('Please fill the blanks')
-            warning = QMessageBox.warning(self, 'Value Error', 'Please fill the blanks', QMessageBox.Ok)
-
+            error_msjbox(title='Value Error', text='Please fill the blanks')
             return 0
         elif  self.material_ID != "":
 
@@ -1173,9 +1071,7 @@ class MyWindow(QMainWindow):
         if  result== 2:
             data = self.db.check_material((self.material_name))
             if data != None:
-
-                warning = QMessageBox.warning(self, 'Duplicate Error', 'this record has already registered',
-                                              QMessageBox.Ok)
+                error_msjbox(title='Duplicate Error', text='this record has already registered')
                 self.ui.statusbar.showMessage('Please change your data')
             else:
                 self.db.insert_material((self.material_type_ID,self.material_name,self.material_code1,
@@ -1185,8 +1081,9 @@ class MyWindow(QMainWindow):
                     self.save_image_material(self.filepath,self.material_image_name)
                 self.ui.statusbar.showMessage('The record added successfully ')
 
-            alldata = self.db.showall_material()
-            self.material_table_update(alldata, headers_material)
+            data = self.db.showall_material()
+            table_update(data, headers_material, self.ui.tableWidget_10)
+
         elif result == 1:
             self.update_data_material_table()
         else:
@@ -1213,37 +1110,18 @@ class MyWindow(QMainWindow):
             return True
         else:
             return False
-    def material_table_update(self,data,headers):
-        self.ui.tableWidget_10.clear()
-        self.ui.tableWidget_10.setColumnCount(len(headers))
-        self.ui.tableWidget_10.setHorizontalHeaderLabels(headers)
-        self.ui.tableWidget_10.setRowCount(0)
-        if data:
-            self.ui.tableWidget_10.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_10.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_10.rowCount()
-                self.ui.tableWidget_10.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_10.clear()
     def delete_data_material_table(self):
 
         if self.read_material() == 1:
-            returnValue = self.delete_msjbox(
+            returnValue = delete_msjbox(
                 text="{} Nolu kayıt silinecektir.\nDevam Etmek için Delete tuşuna basın".format(self.material_ID),
                 title="DİKKAT - Veriler silinecektir")
 
             if returnValue == QMessageBox.Discard:
                 self.db.delete_material(int(self.material_ID))
 
-                alldata = self.db.showall_material()
-                self.material_table_update(alldata, headers_material)
+                data = self.db.showall_material()
+                table_update(data, headers_material, self.ui.tableWidget_10)
                 self.clear_material_fields()
     def update_data_material_table(self):
         self.read_material()
@@ -1252,7 +1130,7 @@ class MyWindow(QMainWindow):
                                          self.material_manufacture,self.material_price,self.material_unit,self.material_image_name,self.material_ID))
         if self.material_ID != "":
 
-            returnValue = self.update_msjbox(
+            returnValue = update_msjbox(
                 text="{} Nolu kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.material_ID),
                 title="DİKKAT - Veriler güncellenecek")
 
@@ -1263,18 +1141,15 @@ class MyWindow(QMainWindow):
                 else:
                    self.save_image_material(IMAGE_DIR+self.material_image_name, self.material_image_name)
                 self.clear_material_fields()
-                alldata = self.db.showall_material()
-                self.material_table_update(alldata, headers_material)
+                data = self.db.showall_material()
+                table_update(data, headers_material, self.ui.tableWidget_10)
+                mylog(msg="{} Nolu Malzeme Kaydı güncellendi".format(self.material_ID), type="info")
     def clear_material_fields(self):
-        self.material_ID = self.ui.lineEdit_51.setText("")
-        self.material_type_ID = self.ui.lineEdit_52.setText("")
-        self.material_type_name = self.ui.lineEdit_50.setText("")
-        self.material_name = self.ui.lineEdit_41.setText("")
-        self.material_code1 = self.ui.lineEdit_45.setText("")
-        self.material_code2 = self.ui.lineEdit_47.setText("")
-        self.material_image_name = self.ui.lineEdit_44.setText("")
-        self.material_manufacture = self.ui.lineEdit_48.setText("")
-        self.material_price = self.ui.lineEdit_43.setText("")
+        clear_fields(self.ui.lineEdit_51, self.ui.lineEdit_52,
+                          self.ui.lineEdit_50, self.ui.lineEdit_41,
+                          self.ui.lineEdit_45, self.ui.lineEdit_47,
+                          self.ui.lineEdit_44, self.ui.lineEdit_48,
+                          self.ui.lineEdit_43)
         self.ui.label_49.setPixmap(None)
         self.material_property1 = self.ui.textEdit.setPlainText("")
         self.material_property2 = self.ui.textEdit_2.setPlainText("")
@@ -1282,16 +1157,13 @@ class MyWindow(QMainWindow):
     def filter_material_table(self):
         self.filter_val_material = self.ui.lineEdit_55.text()
         self.criteria_val_material = self.ui.comboBox_9.currentIndex()
-
         data = self.db.showfilter_material(self.criteria_val_material, self.filter_val_material )
-
-        self.material_table_update(data, headers_material)
-
+        table_update(data, headers_material, self.ui.tableWidget_10)
 
 # ================== STOCKS ===============================================
     def read_stock(self):
         self.stock_ID = self.ui.lineEdit_69.text()
-        self.stock_code = self.ui.lineEdit_65.text()
+        # self.stock_code = self.ui.lineEdit_65.text()
         self.finalstock_code = self.ui.lineEdit_68.text()
         self.quantity=self.ui.lineEdit_67.text()
         self.unit=self.ui.comboBox_5.currentText()
@@ -1305,12 +1177,11 @@ class MyWindow(QMainWindow):
         self.stock_cabinet_ID =self.ui.lineEdit_72.text()
         self.stock_room_ID =self.ui.lineEdit_71.text()
 
-        if self.stock_code == "" or self.finalstock_code == "" or self.quantity == ""\
+        if  self.finalstock_code == "" or self.quantity == ""\
                 or self.stock_material_code =="" or self.stock_room_name =="" or self.stock_cabinet_code ==""\
                 or self.stock_shelf_code =="" :
             self.ui.statusbar.showMessage('Please fill the blanks')
-            warning = QMessageBox.warning(self, 'Value Error', 'Please fill the blanks', QMessageBox.Ok)
-
+            error_msjbox(title='Value Error', text='Please fill the blanks')
             return 0
         elif  self.stock_ID != "" :
 
@@ -1320,7 +1191,7 @@ class MyWindow(QMainWindow):
             return 2
     def final_stockcode_generate(self):
 
-        self.ui.lineEdit_68.setText("STK-"+self.ui.lineEdit_65.text()+"-"+self.ui.lineEdit_56.text()+"-"+self.ui.lineEdit_57.text()+"-"+
+        self.ui.lineEdit_68.setText("STK-"+self.ui.lineEdit_56.text()+"-"+self.ui.lineEdit_57.text()+"-"+
                                     self.ui.lineEdit_58.text()+"-"+self.ui.lineEdit_59.text())
     def insert_stock_table(self):
         result=self.read_stock()
@@ -1328,17 +1199,16 @@ class MyWindow(QMainWindow):
         if  result== 2:
             data = self.db.check_stock((self.finalstock_code))
             if data != None:
-
-                warning = QMessageBox.warning(self, 'Duplicate Error', 'this record has already registered',
-                                              QMessageBox.Ok)
+                error_msjbox(title='Duplicate Error', text='this record has already registered')
                 self.ui.statusbar.showMessage('Please change your data')
             else:
                 self.db.insert_stock((self.finalstock_code,self.stock_shelf_ID,self.stock_material_ID,self.quantity,self.unit,self.stock_userID))
 
                 self.ui.statusbar.showMessage('The record added successfully ')
 
-            alldata = self.db.showall_stock()
-            self.stock_table_update(alldata, headers_stock)
+            data = self.db.showall_stock()
+            table_update(data, headers_stock, self.ui.tableWidget_13)
+
             self.clear_stock_fields()
         elif result == 1:
             self.update_data_stock_table()
@@ -1349,9 +1219,9 @@ class MyWindow(QMainWindow):
 
         data = self.db.calldata_with_id_stock(self.stock_ID)
         if data != None:
-            code=str(data[1]).split(sep="-")
+            # code=str(data[1]).split(sep="-")
             self.ui.lineEdit_69.setText(str(data[0]))
-            self.ui.lineEdit_65.setText(code[1])
+            # self.ui.lineEdit_65.setText(code[1])
             self.ui.lineEdit_68.setText(str(data[1]))
             self.ui.lineEdit_67.setText(str(data[9]))
             self.ui.comboBox_5.setCurrentText(str(data[10]))
@@ -1371,68 +1241,41 @@ class MyWindow(QMainWindow):
             return True
         else:
             return False
-    def stock_table_update(self,data,headers):
-        self.ui.tableWidget_13.clear()
-        self.ui.tableWidget_13.setColumnCount(len(headers))
-        self.ui.tableWidget_13.setHorizontalHeaderLabels(headers)
-        self.ui.tableWidget_13.setRowCount(0)
-        if data:
-            self.ui.tableWidget_13.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
-
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    self.ui.tableWidget_13.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = self.ui.tableWidget_13.rowCount()
-                self.ui.tableWidget_13.insertRow(row_pos)
-
-        else:
-            self.ui.tableWidget_13.clear()
     def delete_data_stock_table(self):
 
         if self.read_stock() == 1:
-            returnValue = self.delete_msjbox(
+            returnValue = delete_msjbox(
                 text="{} Nolu kayıt siliniecektir.\nDevam Etmek için Delete tuşuna basın".format(self.stock_ID),
                 title="DİKKAT - Veri Silinecek")
 
             if returnValue == QMessageBox.Discard:
                 self.db.delete_stock(int(self.stock_ID))
 
-                alldata = self.db.showall_stock()
-                self.stock_table_update(alldata, headers_stock)
+                data = self.db.showall_stock()
+                table_update(data, headers_stock, self.ui.tableWidget_13)
                 self.clear_stock_fields()
     def update_data_stock_table(self):
         self.read_stock()
         values = ((self.finalstock_code,self.stock_shelf_ID,self.stock_material_ID,self.quantity,self.unit,self.stock_userID,self.stock_ID))
         if self.stock_ID != "":
-            returnValue = self.update_msjbox(
+            returnValue = update_msjbox(
                 text="{} Nolu kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.stock_ID),
                 title="DİKKAT - Veriler güncellenecek")
 
             if returnValue == QMessageBox.Ok:
                 self.db.update_stock(values)
 
-                alldata = self.db.showall_stock()
-                self.stock_table_update(alldata, headers_stock)
+                data = self.db.showall_stock()
+                table_update(data, headers_stock, self.ui.tableWidget_13)
+                mylog(msg="{} Nolu Stok Kaydı güncellendi".format(self.stock_ID), type="info")
     def clear_stock_fields(self):
-        self.ui.lineEdit_69.setText("")
-        self.ui.lineEdit_65.setText("")
-        self.ui.lineEdit_66.setText("")
-
-        self.ui.lineEdit_67.setText("")
+        clear_fields( self.ui.lineEdit_66,
+                          self.ui.lineEdit_67, self.ui.lineEdit_69,
+                          self.ui.lineEdit_56, self.ui.lineEdit_57,
+                          self.ui.lineEdit_58, self.ui.lineEdit_59,
+                          self.ui.lineEdit_70, self.ui.lineEdit_71,
+                          self.ui.lineEdit_72, self.ui.lineEdit_73,self.ui.lineEdit_68)
         self.ui.comboBox_5.setCurrentText("")
-        self.ui.lineEdit_56.setText("")
-        self.ui.lineEdit_57.setText("")
-        self.ui.lineEdit_58.setText("")
-        self.ui.lineEdit_59.setText("")
-
-        self.ui.lineEdit_70.setText("")
-        self.ui.lineEdit_71.setText("")
-        self.ui.lineEdit_72.setText("")
-        self.ui.lineEdit_73.setText("")
-        self.ui.lineEdit_68.setText("")
         self.ui.label_62.setPixmap(None)
     def filter_stock_table(self):
         self.filter_val_stock = self.ui.lineEdit_61.text()
@@ -1440,8 +1283,7 @@ class MyWindow(QMainWindow):
 
         data = self.db.showfilter_stock(self.criteria_val_stock, self.filter_val_stock )
 
-        self.stock_table_update(data, headers_stock)
-
+        table_update(data, headers_stock, self.ui.tableWidget_13)
     def material_table_clicked(self):
         self.ui.lineEdit_70.setText(self.ui.tableWidget_12.item(self.ui.tableWidget_12.currentRow(), 0).text())
         self.ui.lineEdit_56.setText(self.ui.tableWidget_12.item(self.ui.tableWidget_12.currentRow(), 3).text())
@@ -1481,42 +1323,40 @@ class MyWindow(QMainWindow):
         self.ui.lineEdit_59.setText(self.ui.tableWidget_16.item(self.ui.tableWidget_16.currentRow(), 1).text())
 
         self.ui.tabWidget_5.setCurrentIndex(0)
-
     def filter_stock_material_table(self):
         self.ui.lineEdit_60.text()
         self.ui.comboBox_10.currentIndex()
 
         data = self.db.showfilter_material(self.ui.comboBox_10.currentIndex(), self.ui.lineEdit_60.text() )
 
-        self.table_update(data, headers_material, self.ui.tableWidget_12)
+        table_update(data, headers_material, self.ui.tableWidget_12)
     def filter_stock_room_table(self):
         self.ui.lineEdit_62.text()
         self.ui.comboBox_12.currentIndex()
 
         data = self.db.showfilter_room(index=self.ui.comboBox_12.currentIndex(), filter_value=self.ui.lineEdit_62.text() )
 
-        self.table_update(data, headers, self.ui.tableWidget_14)
+        table_update(data, headers, self.ui.tableWidget_14)
     def filter_stock_cabinet_table(self):
         self.ui.lineEdit_63.text()
         self.ui.comboBox_13.currentIndex()
         data = self.db.showfilter_cabinet(index=self.ui.comboBox_13.currentIndex(),filter_value= self.ui.lineEdit_63.text(),room=self.ui.lineEdit_57.text() )
-        self.table_update(data, headers_cabinet, self.ui.tableWidget_15)
+        table_update(data, headers_cabinet, self.ui.tableWidget_15)
     def filter_stock_shelf_table(self):
         self.ui.lineEdit_64.text()
         self.ui.comboBox_14.currentIndex()
 
         data = self.db.showfilter_shelf(index=self.ui.comboBox_14.currentIndex(), filter_value=self.ui.lineEdit_64.text(),room=self.ui.lineEdit_57.text(),cabinet=self.ui.lineEdit_58.text() )
 
-        self.table_update(data, headers_shelf, self.ui.tableWidget_16)
-
+        table_update(data, headers_shelf, self.ui.tableWidget_16)
     def stock_search_table_clicked(self):
         self.ui.lineEdit_75.setText(self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text())
 
         data = self.db.calldata_with_id_stock(int(self.ui.lineEdit_75.text()))
         if data != None:
-            code = str(data[1]).split(sep="-")
+            # code = str(data[1]).split(sep="-")
             self.ui.lineEdit_77.setText(str(data[1]))
-            self.ui.lineEdit_76.setText(code[1])
+            # self.ui.lineEdit_76.setText(code[1])
             self.ui.lineEdit_2.setText(str(data[2]))
             self.ui.lineEdit_42.setText(str(data[9]))
             self.ui.lineEdit_78.setText(str(data[10]))
@@ -1547,7 +1387,7 @@ class MyWindow(QMainWindow):
     def filter_stock_search_table(self):
 
         data = self.db.showfilter_stock(self.ui.comboBox_15.currentIndex(), self.ui.lineEdit_9.text())
-        self.table_update(data, headers_stock,self.ui.tableWidget)
+        table_update(data, headers_stock,self.ui.tableWidget)
     def log_page_call(self):
         if self.ui.lineEdit_75.text()!="":
             self.window2 = logwindow()
@@ -1557,8 +1397,7 @@ class MyWindow(QMainWindow):
             self.window2.show()
             self.window2.stock_data_call()
         else:
-            warning = QMessageBox.warning(self, 'Data Error', 'Please select a stock before do it',
-                                          QMessageBox.Ok)
+            error_msjbox(title='Data Error', text='Please select a stock before do it')
             self.ui.statusbar.showMessage('Please select a stock')
     def logout_myapp(self):
         self.window = Login()
@@ -1567,26 +1406,8 @@ class MyWindow(QMainWindow):
         self.window.show()
     def filter_logs_table(self):
         data = self.db.showfilter_logs(self.ui.comboBox_16.currentIndex(), self.ui.lineEdit_83.text())
-        self.table_update(data, headers_logs,self.ui.tableWidget_17)
-    def table_update(self,data,headers,sender):
-        sender.clear()
-        sender.setColumnCount(len(headers))
-        sender.setHorizontalHeaderLabels(headers)
-        sender.setRowCount(0)
-        if data:
-            sender.insertRow(0)
-            # self.ui.tableWidget_3.insertColumn(0)
+        table_update(data, headers_logs,self.ui.tableWidget_17)
 
-            for row, form in enumerate(data):
-
-                for column, item in enumerate(form):
-                    sender.setItem(row, column, QTableWidgetItem(str(item)))
-                    column += 1
-                row_pos = sender.rowCount()
-                sender.insertRow(row_pos)
-
-        else:
-            sender.clear()
 
     # ================== export ===============================================
     def export_report(self):
@@ -1597,17 +1418,14 @@ class MyWindow(QMainWindow):
 
         except Exception as err:
             print(err)
-            warning = QMessageBox.warning(self, 'Data Error', 'Error is {}'.format(err), QMessageBox.Ok)
+            error_msjbox(title='Value Error', text='Error is {}'.format(err))
             self.ui.statusbar.showMessage('Error is {}'.format(err))
-
+            mylog(err, type="error")
         if data!=[]:
             wb = Wb(REPORT_DIR + '\\report_{}.xlsx'.format(datetime.date.today()), )
             sheet1 = wb.add_worksheet()
             for i in range(len(headers_logs)):
                 sheet1.write(0, i, headers_logs[i])
-
-
-
 
             row_number = 1
             for row in data:
@@ -1622,8 +1440,30 @@ class MyWindow(QMainWindow):
                 (REPORT_DIR + '\\report_{}.xlsx'.format(datetime.date.today())),),QMessageBox.Ok)
             self.ui.statusbar.showMessage('Export has been done')
         else:
-            warning = QMessageBox.warning(self, 'Data Error', 'Please change your date', QMessageBox.Ok)
+            error_msjbox(title='Value Error', text='Please change your date')
+            self.ui.statusbar.showMessage('Please change your date')
+    def export_stocks(self):
+        data = self.db.showall_stock()
+        if data!=[]:
+            wb = Wb(REPORT_DIR + '\\report_stock_{}.xlsx'.format(datetime.date.today()), )
+            sheet1 = wb.add_worksheet()
+            for i in range(len(headers_stock)):
+                sheet1.write(0, i, headers_stock[i])
 
+            row_number = 1
+            for row in data:
+                column_num = 0
+                for item in row:
+                    sheet1.write(row_number, column_num, str(item))
+                    column_num += 1
+                row_number += 1
+
+            wb.close()
+            information = QMessageBox.information(self, 'Export has been done', 'plesae check the excel file :{} '.format(
+                (REPORT_DIR + '\\report_{}.xlsx'.format(datetime.date.today())),),QMessageBox.Ok)
+            self.ui.statusbar.showMessage('Export has been done')
+        else:
+            error_msjbox(title='Value Error', text='Please change your date')
             self.ui.statusbar.showMessage('Please change your date')
     # ================== user ===============================================
     def read_user_data(self):
@@ -1635,21 +1475,20 @@ class MyWindow(QMainWindow):
 
         if self.username=="" or self.psw1=="" or self.psw2=="" :
             self.ui.statusbar.showMessage('Please fill the blanks')
-            warning = QMessageBox.warning(self, 'Value Error', 'Please fill the blanks', QMessageBox.Ok)
+            error_msjbox(title='Value Error', text='Please fill the blanks')
             return 0
         elif self.userID!="" and  self.psw1== self.psw2 :
             return 1
         elif self.userID!="" and  (self.psw1!= self.psw2 ):
             self.ui.statusbar.showMessage('Password Error')
-            warning = QMessageBox.warning(self, 'Wrong password', 'Please re-enter passwords', QMessageBox.Ok)
+            error_msjbox(title='Wrong password', text='Please re-enter passwords')
             return 2
         else :
             return 3
     def clear_user_fields(self):
-        self.ui.lineEdit_10.setText("")
-        self.ui.lineEdit_11.setText("")
-        self.ui.lineEdit_86.setText("")
-        self.ui.lineEdit_87.setText("")
+        clear_fields(self.ui.lineEdit_10, self.ui.lineEdit_11,
+                          self.ui.lineEdit_86, self.ui.lineEdit_87)
+
         self.ui.comboBox_4.setCurrentText("")
     def callback_from_user_table(self):
         self.userID = int(self.ui.tableWidget_2.item(self.ui.tableWidget_2.currentRow(), 0).text())
@@ -1666,33 +1505,33 @@ class MyWindow(QMainWindow):
     def filter_user_table(self):
         data = self.db.showfilter_user(self.ui.lineEdit_88.text())
 
-        self.table_update(data, headers_user, self.ui.tableWidget_2)
+        table_update(data, headers_user, self.ui.tableWidget_2)
     def delete_data_user_table(self):
 
         if self.read_user_data() == 1:
-            returnValue = self.delete_msjbox(text="{} Nolu kayıt silinecektir.\nDevam Etmek için Delete tuşuna basın".format(self.userID),
+            returnValue = delete_msjbox(text="{} Nolu kayıt silinecektir.\nDevam Etmek için Delete tuşuna basın".format(self.userID),
                                              title="DİKKAT - Veri Silinecek")
 
             if returnValue == QMessageBox.Discard:
                 self.db.delete_user(int(self.userID))
 
                 data = self.db.showall_user()
-                self.table_update(data, headers_user, self.ui.tableWidget_2)
+                table_update(data, headers_user, self.ui.tableWidget_2)
                 self.clear_user_fields()
     def update_data_user_table(self):
         if self.read_user_data()==1:
 
             values = (( self.username,self.psw1,self.usertype,self.userID))
-            returnValue = self.update_msjbox(text="{} adlı kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.username),
+            returnValue = update_msjbox(text="{} adlı kayıt güncellenecektir.\nDevam Etmek için Ok tuşuna basın".format(self.username),
                                title="DİKKAT - Veriler güncellenecek")
 
             if returnValue == QMessageBox.Ok:
                 self.db.update_user(values)
 
                 data = self.db.showall_user()
-                self.table_update(data, headers_user, self.ui.tableWidget_2)
+                table_update(data, headers_user, self.ui.tableWidget_2)
                 self.clear_user_fields()
-
+                mylog(msg="{} Nolu Kullanıcı Kaydı güncellendi".format(self.username), type="info")
     def qrcode_gen(self,code,label):
         qrcode=pyqrcode.create(code,mode='binary')
         label.setText(str(qrcode))
@@ -1723,6 +1562,20 @@ class MyWindow(QMainWindow):
             self.ui.label_14.setVisible(False)
         self.change_setting_file()
 
+    # ================ THEMES ================================================
+
+    def theme_1(self):
+        style = open('staticfiles/themes/darkorange.css', 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+    def theme_2(self):
+        style = open('staticfiles/themes/qdark.css', 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+    def theme_3(self):
+        style = open('staticfiles/themes/qdarkgrey.css', 'r')
+        style = style.read()
+        self.setStyleSheet(style)
     def change_setting_file(self):
         self.ui.label_14.setVisible(True)
 class Login(QDialog):
@@ -1763,10 +1616,8 @@ class Login(QDialog):
             self.window.user_admin_check()
             self.close()
             self.window.show()
-
-
         else:
-            warning = QMessageBox.warning(self, 'Data Error', 'Please check your data', QMessageBox.Ok)
+            error_msjbox(title='Value Error', text='Please fill the blanks')
             self.ui.label_6.setText('Please check your data')
             print("User error")
     def add_user(self):
@@ -1797,12 +1648,13 @@ class logwindow(QMainWindow):
         self.handle_button()
     def handle_button(self):
         self.ui.pushButton_8.clicked.connect(self.insert_logs)
+        self.ui.pushButton_9.clicked.connect(self.close)
     def stock_data_call(self):
         data = self.db.calldata_with_id_stock(int(self.ui.lineEdit_75.text()))
         if data != None:
-            code = str(data[1]).split(sep="-")
+            # code = str(data[1]).split(sep="-")
             self.ui.lineEdit_77.setText(str(data[1]))
-            self.ui.lineEdit_76.setText(code[1])
+            # self.ui.lineEdit_76.setText(code[1])
             self.ui.lineEdit_2.setText(str(data[2]))
             self.ui.lineEdit_42.setText(str(data[9]))
             self.ui.lineEdit_79.setText(str(data[10]))
@@ -1835,18 +1687,15 @@ class logwindow(QMainWindow):
         self.ui.qty = self.ui.lineEdit.text()
         self.ui.stockID=self.ui.lineEdit_75.text()
         if self.ui.yourname=="" or self.ui.reason =="" or self.ui.qty=="":
-            warning = QMessageBox.warning(self, 'Data Error', 'Please fill the blanks', QMessageBox.Ok)
+            error_msjbox(title='Value Error', text='Please fill the blanks')
             print("fill blanks")
             return 0
         else:
             if int(self.ui.lineEdit.text())>int(self.ui.lineEdit_42.text()):
-                warning = QMessageBox.warning(self, 'Quantity Error', 'Please check your qty, it can not be more then the current',
-                                              QMessageBox.Ok)
+                error_msjbox(title='Quantity Error', text='Please check your qty, it can not be more then the current')
                 print("qty error")
             elif self.ui.lineEdit.text()==0:
-                warning = QMessageBox.warning(self, 'Zero Quantity ',
-                                              'Yo cannot take any item from this stock. Please change your stock',
-                                              QMessageBox.Ok)
+                error_msjbox(title='Zero Quantity', text='You cannot take any item from this stock. Please change your stock')
                 return 0
             else:
 
@@ -1902,6 +1751,7 @@ def show_LoginPage():
         sys.exit(app.exec_())
     except:
         print("Exiting")
+        mylog("Existing", type="info")
 if __name__ == "__main__":
     try:
         
@@ -1909,3 +1759,4 @@ if __name__ == "__main__":
 
     except Exception as err:
         print(err)
+        mylog(err, type="error")

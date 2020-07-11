@@ -727,38 +727,6 @@
         </rect>
        </property>
        <property name="text">
-        <string>Final Code</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_66">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>24</y>
-         <width>71</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Stock Code</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_76">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>24</y>
-         <width>121</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="echoMode">
-        <enum>QLineEdit::Normal</enum>
-       </property>
-       <property name="placeholderText">
         <string>Stock Code</string>
        </property>
       </widget>
@@ -2926,35 +2894,6 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_65">
-       <property name="geometry">
-        <rect>
-         <x>88</x>
-         <y>37</y>
-         <width>121</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="echoMode">
-        <enum>QLineEdit::Normal</enum>
-       </property>
-       <property name="placeholderText">
-        <string>Stock Code</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_57">
-       <property name="geometry">
-        <rect>
-         <x>258</x>
-         <y>125</y>
-         <width>31</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>+</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_63">
        <property name="geometry">
         <rect>
@@ -2993,22 +2932,6 @@
         <string>ID</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_58">
-       <property name="geometry">
-        <rect>
-         <x>8</x>
-         <y>37</y>
-         <width>71</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Stock Code</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_61">
        <property name="geometry">
         <rect>
@@ -3019,7 +2942,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Final Code</string>
+        <string>Stock Code</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -4392,7 +4315,7 @@
          <property name="geometry">
           <rect>
            <x>370</x>
-           <y>30</y>
+           <y>60</y>
            <width>841</width>
            <height>481</height>
           </rect>
@@ -4995,6 +4918,16 @@
          <height>25</height>
         </rect>
        </property>
+       <property name="date">
+        <date>
+         <year>2020</year>
+         <month>1</month>
+         <day>1</day>
+        </date>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy-MM-dd HH:mm</string>
+       </property>
        <property name="calendarPopup">
         <bool>true</bool>
        </property>
@@ -5008,8 +4941,15 @@
          <height>25</height>
         </rect>
        </property>
+       <property name="date">
+        <date>
+         <year>2020</year>
+         <month>1</month>
+         <day>1</day>
+        </date>
+       </property>
        <property name="displayFormat">
-        <string>dd.MM.yyyy HH:mm</string>
+        <string>yyyy-MM-dd HH:mm</string>
        </property>
        <property name="calendarPopup">
         <bool>true</bool>
@@ -5079,7 +5019,7 @@
         <x>20</x>
         <y>120</y>
         <width>331</width>
-        <height>191</height>
+        <height>231</height>
        </rect>
       </property>
       <property name="title">
@@ -5234,6 +5174,19 @@
        </property>
        <property name="text">
         <string>Test</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_70">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>190</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Backup DB</string>
        </property>
       </widget>
      </widget>
@@ -5517,7 +5470,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>320</y>
+        <y>360</y>
         <width>331</width>
         <height>80</height>
        </rect>
@@ -5556,7 +5509,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>410</y>
+        <y>450</y>
         <width>331</width>
         <height>20</height>
        </rect>
@@ -5601,6 +5554,32 @@
       <property name="text">
        <string>Attention = Restart required</string>
       </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_32">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>480</y>
+        <width>151</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Export All Stock</string>
+      </property>
+      <widget class="QPushButton" name="pushButton_71">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Export to CSV</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -5795,7 +5774,6 @@
   <tabstop>pushButton_38</tabstop>
   <tabstop>pushButton_39</tabstop>
   <tabstop>pushButton_40</tabstop>
-  <tabstop>lineEdit_65</tabstop>
   <tabstop>lineEdit_67</tabstop>
   <tabstop>comboBox_5</tabstop>
   <tabstop>pushButton_48</tabstop>
@@ -5865,7 +5843,6 @@
   <tabstop>tabWidget_4</tabstop>
   <tabstop>tableWidget_10</tabstop>
   <tabstop>lineEdit_68</tabstop>
-  <tabstop>pushButton_57</tabstop>
   <tabstop>lineEdit_69</tabstop>
   <tabstop>lineEdit_35</tabstop>
   <tabstop>lineEdit_38</tabstop>
@@ -5941,7 +5918,6 @@
   <tabstop>pushButton_3</tabstop>
   <tabstop>lineEdit_74</tabstop>
   <tabstop>lineEdit_75</tabstop>
-  <tabstop>lineEdit_76</tabstop>
   <tabstop>lineEdit_77</tabstop>
   <tabstop>lineEdit_78</tabstop>
   <tabstop>lineEdit_79</tabstop>

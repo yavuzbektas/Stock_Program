@@ -1,160 +1,160 @@
-student Project
----------------------------------
-Files
-- Requrements.txt
-- Outline.txt
-- Readme.MD
-- Media
-- GUI
-    - UI files
-- staticfiles
-    - Icons
-    - theme
-    
-
----------------------------------
-- Pages
-    -- User Login /Logout
-    -- Product Add/Remove/update
-	-- Cabinet Add/Remove/update
-	-- Self Add/Remove/update
-	-- Storage Room Add/Remove/update
-    -- Firm Add/Remove/update
-    -- storage room Add/Remove/update
-        -- storage_cabinet Add/Remove/update
-		-- shelf  Add/Remove/update
-    -- report Page
-        --- total of stock 
-        --- other report
-    -- Settings
-        --- user Add/Remove/update
-        --- database setting
-        --- theme setting
-----------------------------------
-- Tables
-   	Users
-   	-- User Name
-   	-- User Password
-   	-- User Email
-	--user type
-   	-- record Date > automatic
-
-   	Storage Room
-  	-- roomID
-  	-- room_name
-	-- room_number
-  	-- room_staff -> from user
-   	-- record_date
-
-	Cabinet
-	-- cabinetID
-	-- cabinet_name
-	-- cabinet_code
-	-- cabinet_typeID
-	
-	cabinet_type
-	--cab_type_ID
-	--type_name
-	
-	shelf
-	--shelf_ID
-	--shelf_code
-	
-	
-
-	matarial_type
-	--type_ID
-	--type_name
-
-	unit_type
-	--unit_ID
-	--unit_name
-
-	materials
-	--ID
-	--type_ID
-	--name
-	--code1
-	--code2
-	--property1
-	--property1
-	--manufacture
-	--price
-	--price_ıd
-	--image_path
-
-	stocks
-	--stock_ID
-	--shelf_ID
-	--metariel_ID
-	--piece
-	--unit
-	--record_date
-	--username
-
-
-
-
-----------------------------------------------
-support link
-https://www.w3schools.com/python/python_mysql_insert.asp
-
-----------------------------------------------
-two library for mysql communicaiton
-to compare  : https://charlesnagy.info/it/python/python-mysqldb-vs-mysql-connector-query-performance
-https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html
-https://www.tutorialspoint.com/python/python_database_access.htm
-https://www.datacamp.com/community/tutorials/mysql-python#CD
-
-------------------------------------------------
-pyside2 vs pyqt5
-https://www.learnpyqt.com/blog/pyqt5-vs-pyside2/
-
-
-#======================================================================================
-start Project
-- İnstall Pyside2 or pyqt5 library
-- design Login page
-
-pyside2-uic mainwindow.ui > ui_mainwindow.py
-pyside2-uic mainwindow.ui -o MainWindow.py
-
-veya
-
-pyuic5 mainwindow.ui -o MainWindow.py
-#======================================================================================
-
-collect for all requirements files into txt file
-pip freeze > requirements.txt
-#======================================================================================
-pyinstaller --onefile school.py
-pyinstaller --add-data "staticfiles;." school.py
-
-pyinstaller --add-data 'src/README.txt:.' myscript.py
-
-calısıyor ancak bunu envirement altında calıstır yani pycharm ide altında
-pyinstaller.exe --add-data "C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram;." C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\myApp.py --icon C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\icons\warehouse4.ico
-
-
-pyinstaller.exe --onefile  C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\myApp.py --icon C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\icons\warehouse4.ico
-
-#======================================================================================
-CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-
-#======================================================================================
-You could use pymysql.
-
-pip install mysqlclient pymysql
-
-Once these libraries are installed, just add the lines in the manage.py file in your project and use the database settings for mysql.
-
-import pymysql
-pymysql.install_as_MySQLdb()
-#======================================================================================
-
-linguist
-lupdate form.ui -ts C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\languages\main_tr.ts
-lupdate login.ui -ts C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\languages\login_tr.ts
-lupdate takeform.ui -ts C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\languages\logs_tr.ts
-sonra
-lrelease C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\languages\main_tr.ts
+# student Project
+# ---------------------------------
+# Files
+# - Requrements.txt
+# - Outline.txt
+# - Readme.MD
+# - Media
+# - GUI
+#     - UI files
+# - staticfiles
+#     - Icons
+#     - theme
+#
+#
+# ---------------------------------
+# - Pages
+#     -- User Login /Logout
+#     -- Product Add/Remove/update
+# 	-- Cabinet Add/Remove/update
+# 	-- Self Add/Remove/update
+# 	-- Storage Room Add/Remove/update
+#     -- Firm Add/Remove/update
+#     -- storage room Add/Remove/update
+#         -- storage_cabinet Add/Remove/update
+# 		-- shelf  Add/Remove/update
+#     -- report Page
+#         --- total of stock
+#         --- other report
+#     -- Settings
+#         --- user Add/Remove/update
+#         --- database setting
+#         --- theme setting
+# ----------------------------------
+# - Tables
+#    	Users
+#    	-- User Name
+#    	-- User Password
+#    	-- User Email
+# 	--user type
+#    	-- record Date > automatic
+#
+#    	Storage Room
+#   	-- roomID
+#   	-- room_name
+# 	-- room_number
+#   	-- room_staff -> from user
+#    	-- record_date
+#
+# 	Cabinet
+# 	-- cabinetID
+# 	-- cabinet_name
+# 	-- cabinet_code
+# 	-- cabinet_typeID
+#
+# 	cabinet_type
+# 	--cab_type_ID
+# 	--type_name
+#
+# 	shelf
+# 	--shelf_ID
+# 	--shelf_code
+#
+#
+#
+# 	matarial_type
+# 	--type_ID
+# 	--type_name
+#
+# 	unit_type
+# 	--unit_ID
+# 	--unit_name
+#
+# 	materials
+# 	--ID
+# 	--type_ID
+# 	--name
+# 	--code1
+# 	--code2
+# 	--property1
+# 	--property1
+# 	--manufacture
+# 	--price
+# 	--price_ıd
+# 	--image_path
+#
+# 	stocks
+# 	--stock_ID
+# 	--shelf_ID
+# 	--metariel_ID
+# 	--piece
+# 	--unit
+# 	--record_date
+# 	--username
+#
+#
+#
+#
+# ----------------------------------------------
+# support link
+# https://www.w3schools.com/python/python_mysql_insert.asp
+#
+# ----------------------------------------------
+# two library for mysql communicaiton
+# to compare  : https://charlesnagy.info/it/python/python-mysqldb-vs-mysql-connector-query-performance
+# https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html
+# https://www.tutorialspoint.com/python/python_database_access.htm
+# https://www.datacamp.com/community/tutorials/mysql-python#CD
+#
+# ------------------------------------------------
+# pyside2 vs pyqt5
+# https://www.learnpyqt.com/blog/pyqt5-vs-pyside2/
+#
+#
+# #======================================================================================
+# start Project
+# - İnstall Pyside2 or pyqt5 library
+# - design Login page
+#
+# pyside2-uic mainwindow.ui > ui_mainwindow.py
+# pyside2-uic mainwindow.ui -o MainWindow.py
+#
+# veya
+#
+# pyuic5 mainwindow.ui -o MainWindow.py
+# #======================================================================================
+#
+# collect for all requirements files into txt file
+# pip freeze > requirements.txt
+# #======================================================================================
+# pyinstaller --onefile school.py
+# pyinstaller --add-data "staticfiles;." school.py
+#
+# pyinstaller --add-data 'src/README.txt:.' myscript.py
+#
+# calısıyor ancak bunu envirement altında calıstır yani pycharm ide altında
+# pyinstaller.exe --add-data "C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram;." C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\myApp.py --icon C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\icons\warehouse4.ico
+#
+#
+# pyinstaller.exe --onefile  C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\myApp.py --icon C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\icons\warehouse4.ico
+#
+# #======================================================================================
+# CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+#
+# #======================================================================================
+# You could use pymysql.
+#
+# pip install mysqlclient pymysql
+#
+# Once these libraries are installed, just add the lines in the manage.py file in your project and use the database settings for mysql.
+#
+# import pymysql
+# pymysql.install_as_MySQLdb()
+# #======================================================================================
+#
+# linguist
+# lupdate form.ui -ts C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\languages\main_tr.ts
+# lupdate login.ui -ts C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\languages\login_tr.ts
+# lupdate takeform.ui -ts C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\languages\logs_tr.ts
+# sonra
+# lrelease C:\Users\YBEKTAS\Desktop\Python\Projeler\StokProgram\staticfiles\languages\main_tr.ts

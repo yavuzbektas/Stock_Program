@@ -25,21 +25,21 @@
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="78"/>
-        <location filename="../../GUI/form.ui" line="5749"/>
+        <location filename="../../GUI/form.ui" line="5728"/>
         <source>Add/Edit Material</source>
         <translation>Malzeme Ekle/Düzenle</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="91"/>
-        <location filename="../../GUI/form.ui" line="4709"/>
-        <location filename="../../GUI/form.ui" line="5759"/>
+        <location filename="../../GUI/form.ui" line="4632"/>
+        <location filename="../../GUI/form.ui" line="5738"/>
         <source>Reports</source>
         <translation>Raporlar</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="108"/>
-        <location filename="../../GUI/form.ui" line="5022"/>
-        <location filename="../../GUI/form.ui" line="5754"/>
+        <location filename="../../GUI/form.ui" line="4962"/>
+        <location filename="../../GUI/form.ui" line="5733"/>
         <source>Settings</source>
         <translation>Ayarlar</translation>
     </message>
@@ -50,82 +50,82 @@
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="184"/>
-        <location filename="../../GUI/form.ui" line="1257"/>
+        <location filename="../../GUI/form.ui" line="1225"/>
         <source>Properties</source>
         <translation>Özellikler</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="212"/>
         <location filename="../../GUI/form.ui" line="391"/>
-        <location filename="../../GUI/form.ui" line="1282"/>
-        <location filename="../../GUI/form.ui" line="1694"/>
-        <location filename="../../GUI/form.ui" line="2172"/>
+        <location filename="../../GUI/form.ui" line="1250"/>
+        <location filename="../../GUI/form.ui" line="1662"/>
+        <location filename="../../GUI/form.ui" line="2140"/>
         <source>Code-2</source>
         <translation>Kod - 2</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="231"/>
         <location filename="../../GUI/form.ui" line="260"/>
-        <location filename="../../GUI/form.ui" line="1327"/>
+        <location filename="../../GUI/form.ui" line="1295"/>
         <source>Price</source>
         <translation>Fiyat</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="244"/>
         <location filename="../../GUI/form.ui" line="426"/>
-        <location filename="../../GUI/form.ui" line="1311"/>
-        <location filename="../../GUI/form.ui" line="1709"/>
-        <location filename="../../GUI/form.ui" line="2187"/>
+        <location filename="../../GUI/form.ui" line="1279"/>
+        <location filename="../../GUI/form.ui" line="1677"/>
+        <location filename="../../GUI/form.ui" line="2155"/>
         <source>Manufacture</source>
         <translation>Üretici</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="292"/>
         <location filename="../../GUI/form.ui" line="343"/>
-        <location filename="../../GUI/form.ui" line="1343"/>
+        <location filename="../../GUI/form.ui" line="1311"/>
         <source>Property -2</source>
         <translation>Özellikler - 2</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="199"/>
         <location filename="../../GUI/form.ui" line="324"/>
-        <location filename="../../GUI/form.ui" line="1372"/>
-        <location filename="../../GUI/form.ui" line="1684"/>
-        <location filename="../../GUI/form.ui" line="1805"/>
-        <location filename="../../GUI/form.ui" line="2162"/>
-        <location filename="../../GUI/form.ui" line="2251"/>
-        <location filename="../../GUI/form.ui" line="3134"/>
-        <location filename="../../GUI/form.ui" line="3910"/>
+        <location filename="../../GUI/form.ui" line="1340"/>
+        <location filename="../../GUI/form.ui" line="1652"/>
+        <location filename="../../GUI/form.ui" line="1773"/>
+        <location filename="../../GUI/form.ui" line="2130"/>
+        <location filename="../../GUI/form.ui" line="2219"/>
+        <location filename="../../GUI/form.ui" line="3057"/>
+        <location filename="../../GUI/form.ui" line="3833"/>
         <source>Name</source>
         <translation>Malz. Adı</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="356"/>
         <location filename="../../GUI/form.ui" line="458"/>
-        <location filename="../../GUI/form.ui" line="1388"/>
-        <location filename="../../GUI/form.ui" line="1742"/>
+        <location filename="../../GUI/form.ui" line="1356"/>
+        <location filename="../../GUI/form.ui" line="1710"/>
         <source>Material Type</source>
         <translation>Malz. Tipi</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="311"/>
         <location filename="../../GUI/form.ui" line="372"/>
-        <location filename="../../GUI/form.ui" line="1404"/>
-        <location filename="../../GUI/form.ui" line="1689"/>
-        <location filename="../../GUI/form.ui" line="2167"/>
+        <location filename="../../GUI/form.ui" line="1372"/>
+        <location filename="../../GUI/form.ui" line="1657"/>
+        <location filename="../../GUI/form.ui" line="2135"/>
         <source>Code-1</source>
         <translation>Kod-1 </translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="407"/>
-        <location filename="../../GUI/form.ui" line="1436"/>
+        <location filename="../../GUI/form.ui" line="1404"/>
         <source>image</source>
         <translation>Ürün Resmi</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="279"/>
         <location filename="../../GUI/form.ui" line="439"/>
-        <location filename="../../GUI/form.ui" line="1462"/>
+        <location filename="../../GUI/form.ui" line="1430"/>
         <source>Property -1</source>
         <translation>Özellikler - 1</translation>
     </message>
@@ -138,14 +138,14 @@
         <location filename="../../GUI/form.ui" line="567"/>
         <location filename="../../GUI/form.ui" line="650"/>
         <source>Code</source>
-        <translation>Kayırt Tarihi</translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="490"/>
         <location filename="../../GUI/form.ui" line="503"/>
-        <location filename="../../GUI/form.ui" line="3054"/>
-        <location filename="../../GUI/form.ui" line="3224"/>
-        <location filename="../../GUI/form.ui" line="4893"/>
+        <location filename="../../GUI/form.ui" line="2977"/>
+        <location filename="../../GUI/form.ui" line="3147"/>
+        <location filename="../../GUI/form.ui" line="4816"/>
         <source>Record Date</source>
         <translation>Kayıt Tarihi</translation>
     </message>
@@ -155,36 +155,36 @@
         <location filename="../../GUI/form.ui" line="666"/>
         <location filename="../../GUI/form.ui" line="682"/>
         <location filename="../../GUI/form.ui" line="698"/>
-        <location filename="../../GUI/form.ui" line="784"/>
-        <location filename="../../GUI/form.ui" line="797"/>
-        <location filename="../../GUI/form.ui" line="929"/>
-        <location filename="../../GUI/form.ui" line="1588"/>
-        <location filename="../../GUI/form.ui" line="1607"/>
-        <location filename="../../GUI/form.ui" line="1779"/>
-        <location filename="../../GUI/form.ui" line="2058"/>
-        <location filename="../../GUI/form.ui" line="2266"/>
-        <location filename="../../GUI/form.ui" line="2364"/>
-        <location filename="../../GUI/form.ui" line="2453"/>
-        <location filename="../../GUI/form.ui" line="2690"/>
-        <location filename="../../GUI/form.ui" line="2712"/>
-        <location filename="../../GUI/form.ui" line="2734"/>
-        <location filename="../../GUI/form.ui" line="2756"/>
-        <location filename="../../GUI/form.ui" line="2968"/>
-        <location filename="../../GUI/form.ui" line="2993"/>
-        <location filename="../../GUI/form.ui" line="3092"/>
-        <location filename="../../GUI/form.ui" line="3400"/>
-        <location filename="../../GUI/form.ui" line="3634"/>
-        <location filename="../../GUI/form.ui" line="3671"/>
-        <location filename="../../GUI/form.ui" line="3754"/>
-        <location filename="../../GUI/form.ui" line="3930"/>
-        <location filename="../../GUI/form.ui" line="4200"/>
-        <location filename="../../GUI/form.ui" line="4311"/>
-        <location filename="../../GUI/form.ui" line="4330"/>
-        <location filename="../../GUI/form.ui" line="4536"/>
-        <location filename="../../GUI/form.ui" line="4776"/>
-        <location filename="../../GUI/form.ui" line="4898"/>
-        <location filename="../../GUI/form.ui" line="5281"/>
-        <location filename="../../GUI/form.ui" line="5333"/>
+        <location filename="../../GUI/form.ui" line="752"/>
+        <location filename="../../GUI/form.ui" line="765"/>
+        <location filename="../../GUI/form.ui" line="897"/>
+        <location filename="../../GUI/form.ui" line="1556"/>
+        <location filename="../../GUI/form.ui" line="1575"/>
+        <location filename="../../GUI/form.ui" line="1747"/>
+        <location filename="../../GUI/form.ui" line="2026"/>
+        <location filename="../../GUI/form.ui" line="2234"/>
+        <location filename="../../GUI/form.ui" line="2332"/>
+        <location filename="../../GUI/form.ui" line="2421"/>
+        <location filename="../../GUI/form.ui" line="2658"/>
+        <location filename="../../GUI/form.ui" line="2680"/>
+        <location filename="../../GUI/form.ui" line="2702"/>
+        <location filename="../../GUI/form.ui" line="2724"/>
+        <location filename="../../GUI/form.ui" line="2907"/>
+        <location filename="../../GUI/form.ui" line="2932"/>
+        <location filename="../../GUI/form.ui" line="3015"/>
+        <location filename="../../GUI/form.ui" line="3323"/>
+        <location filename="../../GUI/form.ui" line="3557"/>
+        <location filename="../../GUI/form.ui" line="3594"/>
+        <location filename="../../GUI/form.ui" line="3677"/>
+        <location filename="../../GUI/form.ui" line="3853"/>
+        <location filename="../../GUI/form.ui" line="4123"/>
+        <location filename="../../GUI/form.ui" line="4234"/>
+        <location filename="../../GUI/form.ui" line="4253"/>
+        <location filename="../../GUI/form.ui" line="4459"/>
+        <location filename="../../GUI/form.ui" line="4699"/>
+        <location filename="../../GUI/form.ui" line="4821"/>
+        <location filename="../../GUI/form.ui" line="5234"/>
+        <location filename="../../GUI/form.ui" line="5286"/>
         <source>ID</source>
         <translation></translation>
     </message>
@@ -195,679 +195,686 @@
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="586"/>
-        <location filename="../../GUI/form.ui" line="2256"/>
-        <location filename="../../GUI/form.ui" line="3195"/>
-        <location filename="../../GUI/form.ui" line="3920"/>
+        <location filename="../../GUI/form.ui" line="2224"/>
+        <location filename="../../GUI/form.ui" line="3118"/>
+        <location filename="../../GUI/form.ui" line="3843"/>
         <source>Number</source>
         <translation>Oda Adı</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="599"/>
-        <location filename="../../GUI/form.ui" line="2194"/>
-        <location filename="../../GUI/form.ui" line="2552"/>
-        <location filename="../../GUI/form.ui" line="3080"/>
-        <location filename="../../GUI/form.ui" line="3684"/>
-        <location filename="../../GUI/form.ui" line="3854"/>
-        <location filename="../../GUI/form.ui" line="3866"/>
-        <location filename="../../GUI/form.ui" line="4273"/>
-        <location filename="../../GUI/form.ui" line="4679"/>
+        <location filename="../../GUI/form.ui" line="2162"/>
+        <location filename="../../GUI/form.ui" line="2520"/>
+        <location filename="../../GUI/form.ui" line="3003"/>
+        <location filename="../../GUI/form.ui" line="3607"/>
+        <location filename="../../GUI/form.ui" line="3777"/>
+        <location filename="../../GUI/form.ui" line="3789"/>
+        <location filename="../../GUI/form.ui" line="4196"/>
+        <location filename="../../GUI/form.ui" line="4602"/>
         <source>Room</source>
         <translation>Oda Adı</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="615"/>
-        <location filename="../../GUI/form.ui" line="2286"/>
-        <location filename="../../GUI/form.ui" line="2507"/>
-        <location filename="../../GUI/form.ui" line="3540"/>
-        <location filename="../../GUI/form.ui" line="3552"/>
-        <location filename="../../GUI/form.ui" line="4241"/>
-        <location filename="../../GUI/form.ui" line="4468"/>
-        <location filename="../../GUI/form.ui" line="4693"/>
+        <location filename="../../GUI/form.ui" line="2254"/>
+        <location filename="../../GUI/form.ui" line="2475"/>
+        <location filename="../../GUI/form.ui" line="3463"/>
+        <location filename="../../GUI/form.ui" line="3475"/>
+        <location filename="../../GUI/form.ui" line="4164"/>
+        <location filename="../../GUI/form.ui" line="4391"/>
+        <location filename="../../GUI/form.ui" line="4616"/>
         <source>Cabinet</source>
         <translation>Dolap No</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="631"/>
-        <location filename="../../GUI/form.ui" line="2384"/>
-        <location filename="../../GUI/form.ui" line="2623"/>
-        <location filename="../../GUI/form.ui" line="4700"/>
+        <location filename="../../GUI/form.ui" line="2352"/>
+        <location filename="../../GUI/form.ui" line="2591"/>
+        <location filename="../../GUI/form.ui" line="4623"/>
         <source>Shelf</source>
         <translation>Raf No</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="717"/>
-        <location filename="../../GUI/form.ui" line="2858"/>
+        <location filename="../../GUI/form.ui" line="2826"/>
         <source>Final Stock Code</source>
-        <translation>Son Stok Kod</translation>
+        <translation>Stok Kodu</translation>
+    </message>
+    <message>
+        <source>Final Code</source>
+        <translation type="vanished">Son Stok Kodd</translation>
     </message>
     <message>
         <location filename="../../GUI/form.ui" line="730"/>
-        <location filename="../../GUI/form.ui" line="3022"/>
-        <source>Final Code</source>
-        <translation>Son Stok Kodd</translation>
-    </message>
-    <message>
-        <location filename="../../GUI/form.ui" line="743"/>
-        <location filename="../../GUI/form.ui" line="762"/>
-        <location filename="../../GUI/form.ui" line="894"/>
-        <location filename="../../GUI/form.ui" line="2023"/>
-        <location filename="../../GUI/form.ui" line="2942"/>
-        <location filename="../../GUI/form.ui" line="3006"/>
+        <location filename="../../GUI/form.ui" line="862"/>
+        <location filename="../../GUI/form.ui" line="1991"/>
+        <location filename="../../GUI/form.ui" line="2945"/>
         <source>Stock Code</source>
-        <translation>Stok Kod</translation>
+        <translation>Stok Kodu</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="813"/>
+        <location filename="../../GUI/form.ui" line="781"/>
         <source>QR CODE</source>
         <translation>QR Kod</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="829"/>
+        <location filename="../../GUI/form.ui" line="797"/>
         <source>Save png</source>
         <translation>&apos;png&apos; Kaydet</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="843"/>
-        <location filename="../../GUI/form.ui" line="877"/>
-        <location filename="../../GUI/form.ui" line="1723"/>
-        <location filename="../../GUI/form.ui" line="1939"/>
-        <location filename="../../GUI/form.ui" line="2072"/>
-        <location filename="../../GUI/form.ui" line="2143"/>
-        <location filename="../../GUI/form.ui" line="2280"/>
-        <location filename="../../GUI/form.ui" line="2378"/>
-        <location filename="../../GUI/form.ui" line="2467"/>
-        <location filename="../../GUI/form.ui" line="3986"/>
-        <location filename="../../GUI/form.ui" line="4068"/>
-        <location filename="../../GUI/form.ui" line="4592"/>
-        <location filename="../../GUI/form.ui" line="4648"/>
-        <location filename="../../GUI/form.ui" line="4830"/>
-        <location filename="../../GUI/form.ui" line="4861"/>
-        <location filename="../../GUI/form.ui" line="5493"/>
+        <location filename="../../GUI/form.ui" line="811"/>
+        <location filename="../../GUI/form.ui" line="845"/>
+        <location filename="../../GUI/form.ui" line="1691"/>
+        <location filename="../../GUI/form.ui" line="1907"/>
+        <location filename="../../GUI/form.ui" line="2040"/>
+        <location filename="../../GUI/form.ui" line="2111"/>
+        <location filename="../../GUI/form.ui" line="2248"/>
+        <location filename="../../GUI/form.ui" line="2346"/>
+        <location filename="../../GUI/form.ui" line="2435"/>
+        <location filename="../../GUI/form.ui" line="3909"/>
+        <location filename="../../GUI/form.ui" line="3991"/>
+        <location filename="../../GUI/form.ui" line="4515"/>
+        <location filename="../../GUI/form.ui" line="4571"/>
+        <location filename="../../GUI/form.ui" line="4753"/>
+        <location filename="../../GUI/form.ui" line="4784"/>
+        <location filename="../../GUI/form.ui" line="5446"/>
         <source>Search</source>
         <translation>Kayıt Arama</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="880"/>
-        <location filename="../../GUI/form.ui" line="1726"/>
-        <location filename="../../GUI/form.ui" line="2075"/>
-        <location filename="../../GUI/form.ui" line="4864"/>
+        <location filename="../../GUI/form.ui" line="848"/>
+        <location filename="../../GUI/form.ui" line="1694"/>
+        <location filename="../../GUI/form.ui" line="2043"/>
+        <location filename="../../GUI/form.ui" line="4787"/>
         <source>Return</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="899"/>
-        <location filename="../../GUI/form.ui" line="2028"/>
-        <location filename="../../GUI/form.ui" line="4903"/>
+        <location filename="../../GUI/form.ui" line="867"/>
+        <location filename="../../GUI/form.ui" line="1996"/>
+        <location filename="../../GUI/form.ui" line="4826"/>
         <source>Material Name</source>
         <translation>Malzeme Adı</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="904"/>
-        <location filename="../../GUI/form.ui" line="2033"/>
+        <location filename="../../GUI/form.ui" line="872"/>
+        <location filename="../../GUI/form.ui" line="2001"/>
         <source>Metarial Code</source>
         <translation>Malzeme Kodu</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="909"/>
-        <location filename="../../GUI/form.ui" line="2038"/>
-        <location filename="../../GUI/form.ui" line="2359"/>
-        <location filename="../../GUI/form.ui" line="2448"/>
-        <location filename="../../GUI/form.ui" line="2610"/>
-        <location filename="../../GUI/form.ui" line="4531"/>
-        <location filename="../../GUI/form.ui" line="4913"/>
+        <location filename="../../GUI/form.ui" line="877"/>
+        <location filename="../../GUI/form.ui" line="2006"/>
+        <location filename="../../GUI/form.ui" line="2327"/>
+        <location filename="../../GUI/form.ui" line="2416"/>
+        <location filename="../../GUI/form.ui" line="2578"/>
+        <location filename="../../GUI/form.ui" line="4454"/>
+        <location filename="../../GUI/form.ui" line="4836"/>
         <source>Room Name</source>
         <translation>Oda Adı</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="914"/>
-        <location filename="../../GUI/form.ui" line="2043"/>
-        <location filename="../../GUI/form.ui" line="2354"/>
-        <location filename="../../GUI/form.ui" line="2443"/>
-        <location filename="../../GUI/form.ui" line="2594"/>
-        <location filename="../../GUI/form.ui" line="4526"/>
-        <location filename="../../GUI/form.ui" line="4918"/>
+        <location filename="../../GUI/form.ui" line="882"/>
+        <location filename="../../GUI/form.ui" line="2011"/>
+        <location filename="../../GUI/form.ui" line="2322"/>
+        <location filename="../../GUI/form.ui" line="2411"/>
+        <location filename="../../GUI/form.ui" line="2562"/>
+        <location filename="../../GUI/form.ui" line="4449"/>
+        <location filename="../../GUI/form.ui" line="4841"/>
         <source>Cabinet Code</source>
         <translation>Dolap No</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="919"/>
-        <location filename="../../GUI/form.ui" line="2048"/>
+        <location filename="../../GUI/form.ui" line="887"/>
+        <location filename="../../GUI/form.ui" line="2016"/>
         <source>Shhelf Code</source>
         <translation>Raf No</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="924"/>
-        <location filename="../../GUI/form.ui" line="2053"/>
+        <location filename="../../GUI/form.ui" line="892"/>
+        <location filename="../../GUI/form.ui" line="2021"/>
         <source>User ID</source>
         <translation>Kullanıcı ID</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="944"/>
-        <location filename="../../GUI/form.ui" line="1147"/>
-        <location filename="../../GUI/form.ui" line="3038"/>
+        <location filename="../../GUI/form.ui" line="912"/>
+        <location filename="../../GUI/form.ui" line="1115"/>
+        <location filename="../../GUI/form.ui" line="2961"/>
         <source>Quantity</source>
-        <translation>Adet</translation>
+        <translation>Miktar</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1134"/>
+        <location filename="../../GUI/form.ui" line="1102"/>
         <source>Current</source>
-        <translation>Adet</translation>
+        <translation>Mevcut</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1169"/>
+        <location filename="../../GUI/form.ui" line="1137"/>
         <source>Unit</source>
         <translation>Birim</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1182"/>
+        <location filename="../../GUI/form.ui" line="1150"/>
         <source>TAKE</source>
         <translation>AL/VER</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1189"/>
+        <location filename="../../GUI/form.ui" line="1157"/>
         <source>Edit Material</source>
-        <translation>Malzeme Dzüenle</translation>
+        <translation>Malzeme Düzenleme</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1205"/>
+        <location filename="../../GUI/form.ui" line="1173"/>
         <source>Material </source>
-        <translation>MAlzeme</translation>
+        <translation>Malzeme</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1482"/>
+        <location filename="../../GUI/form.ui" line="1450"/>
         <source>TL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1487"/>
+        <location filename="../../GUI/form.ui" line="1455"/>
         <source>Euro</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1492"/>
+        <location filename="../../GUI/form.ui" line="1460"/>
         <source>Usd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1526"/>
-        <location filename="../../GUI/form.ui" line="1549"/>
-        <location filename="../../GUI/form.ui" line="2494"/>
-        <location filename="../../GUI/form.ui" line="2565"/>
-        <location filename="../../GUI/form.ui" line="2578"/>
-        <location filename="../../GUI/form.ui" line="2652"/>
-        <location filename="../../GUI/form.ui" line="3700"/>
-        <location filename="../../GUI/form.ui" line="4228"/>
+        <location filename="../../GUI/form.ui" line="1494"/>
+        <location filename="../../GUI/form.ui" line="1517"/>
+        <location filename="../../GUI/form.ui" line="2462"/>
+        <location filename="../../GUI/form.ui" line="2533"/>
+        <location filename="../../GUI/form.ui" line="2546"/>
+        <location filename="../../GUI/form.ui" line="2620"/>
+        <location filename="../../GUI/form.ui" line="3623"/>
+        <location filename="../../GUI/form.ui" line="4151"/>
         <source>Select</source>
         <translation>Seçim</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1621"/>
-        <location filename="../../GUI/form.ui" line="1859"/>
-        <location filename="../../GUI/form.ui" line="2770"/>
-        <location filename="../../GUI/form.ui" line="3300"/>
-        <location filename="../../GUI/form.ui" line="3476"/>
-        <location filename="../../GUI/form.ui" line="3784"/>
-        <location filename="../../GUI/form.ui" line="4344"/>
-        <location filename="../../GUI/form.ui" line="4721"/>
+        <location filename="../../GUI/form.ui" line="1589"/>
+        <location filename="../../GUI/form.ui" line="1827"/>
+        <location filename="../../GUI/form.ui" line="2738"/>
+        <location filename="../../GUI/form.ui" line="3223"/>
+        <location filename="../../GUI/form.ui" line="3399"/>
+        <location filename="../../GUI/form.ui" line="3707"/>
+        <location filename="../../GUI/form.ui" line="4267"/>
+        <location filename="../../GUI/form.ui" line="4644"/>
         <source>Control</source>
         <translation>Kontrol</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1633"/>
-        <location filename="../../GUI/form.ui" line="1871"/>
-        <location filename="../../GUI/form.ui" line="2782"/>
-        <location filename="../../GUI/form.ui" line="3312"/>
-        <location filename="../../GUI/form.ui" line="3488"/>
-        <location filename="../../GUI/form.ui" line="3796"/>
-        <location filename="../../GUI/form.ui" line="4356"/>
-        <location filename="../../GUI/form.ui" line="5098"/>
-        <location filename="../../GUI/form.ui" line="5398"/>
+        <location filename="../../GUI/form.ui" line="1601"/>
+        <location filename="../../GUI/form.ui" line="1839"/>
+        <location filename="../../GUI/form.ui" line="2750"/>
+        <location filename="../../GUI/form.ui" line="3235"/>
+        <location filename="../../GUI/form.ui" line="3411"/>
+        <location filename="../../GUI/form.ui" line="3719"/>
+        <location filename="../../GUI/form.ui" line="4279"/>
+        <location filename="../../GUI/form.ui" line="5038"/>
+        <location filename="../../GUI/form.ui" line="5351"/>
         <source>Save</source>
         <translation>Kaydet</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1646"/>
-        <location filename="../../GUI/form.ui" line="1884"/>
-        <location filename="../../GUI/form.ui" line="2795"/>
-        <location filename="../../GUI/form.ui" line="3325"/>
-        <location filename="../../GUI/form.ui" line="3501"/>
-        <location filename="../../GUI/form.ui" line="3809"/>
-        <location filename="../../GUI/form.ui" line="4369"/>
+        <location filename="../../GUI/form.ui" line="1614"/>
+        <location filename="../../GUI/form.ui" line="1852"/>
+        <location filename="../../GUI/form.ui" line="2763"/>
+        <location filename="../../GUI/form.ui" line="3248"/>
+        <location filename="../../GUI/form.ui" line="3424"/>
+        <location filename="../../GUI/form.ui" line="3732"/>
+        <location filename="../../GUI/form.ui" line="4292"/>
         <source>New</source>
         <translation>Yeni</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1664"/>
-        <location filename="../../GUI/form.ui" line="1902"/>
-        <location filename="../../GUI/form.ui" line="2813"/>
-        <location filename="../../GUI/form.ui" line="3343"/>
-        <location filename="../../GUI/form.ui" line="3519"/>
-        <location filename="../../GUI/form.ui" line="3827"/>
-        <location filename="../../GUI/form.ui" line="4387"/>
-        <location filename="../../GUI/form.ui" line="4738"/>
-        <location filename="../../GUI/form.ui" line="5411"/>
+        <location filename="../../GUI/form.ui" line="1632"/>
+        <location filename="../../GUI/form.ui" line="1870"/>
+        <location filename="../../GUI/form.ui" line="2781"/>
+        <location filename="../../GUI/form.ui" line="3266"/>
+        <location filename="../../GUI/form.ui" line="3442"/>
+        <location filename="../../GUI/form.ui" line="3750"/>
+        <location filename="../../GUI/form.ui" line="4310"/>
+        <location filename="../../GUI/form.ui" line="4661"/>
+        <location filename="../../GUI/form.ui" line="5364"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1679"/>
-        <location filename="../../GUI/form.ui" line="1754"/>
-        <location filename="../../GUI/form.ui" line="2157"/>
-        <location filename="../../GUI/form.ui" line="3713"/>
-        <location filename="../../GUI/form.ui" line="3993"/>
+        <location filename="../../GUI/form.ui" line="1647"/>
+        <location filename="../../GUI/form.ui" line="1722"/>
+        <location filename="../../GUI/form.ui" line="2125"/>
+        <location filename="../../GUI/form.ui" line="3636"/>
+        <location filename="../../GUI/form.ui" line="3916"/>
         <source>Type</source>
         <translation>Tür</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1699"/>
-        <location filename="../../GUI/form.ui" line="2177"/>
+        <location filename="../../GUI/form.ui" line="1667"/>
+        <location filename="../../GUI/form.ui" line="2145"/>
         <source>Property-1</source>
         <translation>Özellikler-1</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1704"/>
-        <location filename="../../GUI/form.ui" line="2182"/>
+        <location filename="../../GUI/form.ui" line="1672"/>
+        <location filename="../../GUI/form.ui" line="2150"/>
         <source>Property-2</source>
         <translation>Özellikler-2</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1916"/>
+        <location filename="../../GUI/form.ui" line="1884"/>
         <source>&lt; - Select</source>
         <translation>&lt;- Seçim</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1947"/>
+        <location filename="../../GUI/form.ui" line="1915"/>
         <source>Edit Stocks</source>
-        <translation>Stokları Dğzenle</translation>
+        <translation>Stokları Düzenle</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="1963"/>
-        <location filename="../../GUI/form.ui" line="5729"/>
+        <location filename="../../GUI/form.ui" line="1931"/>
+        <location filename="../../GUI/form.ui" line="5708"/>
         <source>Stock</source>
         <translation>Stok</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="864"/>
-        <location filename="../../GUI/form.ui" line="1975"/>
+        <location filename="../../GUI/form.ui" line="832"/>
+        <location filename="../../GUI/form.ui" line="1943"/>
         <source>Search Text</source>
         <translation>Arama Sözcüğü</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2081"/>
-        <location filename="../../GUI/form.ui" line="2520"/>
+        <location filename="../../GUI/form.ui" line="2049"/>
+        <location filename="../../GUI/form.ui" line="2488"/>
         <source>Material</source>
         <translation>Malzeme</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2261"/>
+        <location filename="../../GUI/form.ui" line="2229"/>
         <source>User</source>
         <translation>Kullanıcı</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2349"/>
-        <location filename="../../GUI/form.ui" line="3375"/>
-        <location filename="../../GUI/form.ui" line="4005"/>
-        <location filename="../../GUI/form.ui" line="4521"/>
-        <location filename="../../GUI/form.ui" line="4686"/>
+        <location filename="../../GUI/form.ui" line="2317"/>
+        <location filename="../../GUI/form.ui" line="3298"/>
+        <location filename="../../GUI/form.ui" line="3928"/>
+        <location filename="../../GUI/form.ui" line="4444"/>
+        <location filename="../../GUI/form.ui" line="4609"/>
         <source>Cabinet Type</source>
         <translation>Dolap Tipi</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2438"/>
-        <location filename="../../GUI/form.ui" line="2639"/>
-        <location filename="../../GUI/form.ui" line="4635"/>
-        <location filename="../../GUI/form.ui" line="4923"/>
+        <location filename="../../GUI/form.ui" line="2406"/>
+        <location filename="../../GUI/form.ui" line="2607"/>
+        <location filename="../../GUI/form.ui" line="4558"/>
+        <location filename="../../GUI/form.ui" line="4846"/>
         <source>Shelf Code</source>
         <translation>Raf No</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2539"/>
+        <location filename="../../GUI/form.ui" line="2507"/>
         <source>Material Code-1</source>
         <translation>Malzeme Kodu-1</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2668"/>
+        <location filename="../../GUI/form.ui" line="2636"/>
         <source>Image</source>
         <translation>Resim</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2875"/>
+        <location filename="../../GUI/form.ui" line="2843"/>
         <source>qty</source>
         <translation>adet</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2880"/>
+        <location filename="../../GUI/form.ui" line="2848"/>
         <source>kg</source>
-        <translation></translation>
+        <translation>kg</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2885"/>
+        <location filename="../../GUI/form.ui" line="2853"/>
         <source>gr</source>
-        <translation></translation>
+        <translation>gr</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2890"/>
+        <location filename="../../GUI/form.ui" line="2858"/>
         <source>cm</source>
-        <translation></translation>
+        <translation>cm</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2895"/>
+        <location filename="../../GUI/form.ui" line="2863"/>
         <source>meter</source>
         <translation>metre</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2900"/>
+        <location filename="../../GUI/form.ui" line="2868"/>
         <source>packet</source>
         <translation>paket</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2905"/>
+        <location filename="../../GUI/form.ui" line="2873"/>
         <source>plate</source>
         <translation>plaka</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2910"/>
+        <location filename="../../GUI/form.ui" line="2878"/>
         <source>box</source>
-        <translation type="unfinished">Kutu</translation>
+        <translation>Kutu</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="2955"/>
-        <source>+</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../GUI/form.ui" line="3064"/>
+        <location filename="../../GUI/form.ui" line="2987"/>
         <source>Edit Stock Fields</source>
         <translation>Stok Alanı Düzenle</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="3150"/>
-        <location filename="../../GUI/form.ui" line="3915"/>
+        <location filename="../../GUI/form.ui" line="3073"/>
+        <location filename="../../GUI/form.ui" line="3838"/>
         <source>Description</source>
         <translation>Açıklama</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="3179"/>
+        <location filename="../../GUI/form.ui" line="3102"/>
         <source>Staff Name</source>
         <translation>Yetkili Adı</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="3363"/>
+        <location filename="../../GUI/form.ui" line="3286"/>
         <source>Cabinet type</source>
         <translation>Dolap Tipi</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="3416"/>
+        <location filename="../../GUI/form.ui" line="3339"/>
         <source>Cabin type</source>
         <translation>Dolap Tipi</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="3618"/>
+        <location filename="../../GUI/form.ui" line="3541"/>
         <source>Cabin code</source>
         <translation>Dolap Kodu</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="3925"/>
-        <location filename="../../GUI/form.ui" line="4928"/>
+        <location filename="../../GUI/form.ui" line="3848"/>
+        <location filename="../../GUI/form.ui" line="4851"/>
         <source>UserID</source>
         <translation>Kullanıcı ID</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="3944"/>
-        <location filename="../../GUI/form.ui" line="4550"/>
+        <location filename="../../GUI/form.ui" line="3867"/>
+        <location filename="../../GUI/form.ui" line="4473"/>
         <source>Criteria</source>
         <translation>Kriter</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="3970"/>
-        <location filename="../../GUI/form.ui" line="4052"/>
-        <location filename="../../GUI/form.ui" line="4576"/>
-        <location filename="../../GUI/form.ui" line="4619"/>
+        <location filename="../../GUI/form.ui" line="3893"/>
+        <location filename="../../GUI/form.ui" line="3975"/>
+        <location filename="../../GUI/form.ui" line="4499"/>
+        <location filename="../../GUI/form.ui" line="4542"/>
         <source>Search by</source>
-        <translation>Arama Sözcüğü</translation>
+        <translation>ile ARA</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4100"/>
-        <location filename="../../GUI/form.ui" line="4112"/>
+        <location filename="../../GUI/form.ui" line="4023"/>
+        <location filename="../../GUI/form.ui" line="4035"/>
         <source>Shelves</source>
         <translation>Raflar</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4184"/>
+        <location filename="../../GUI/form.ui" line="4107"/>
         <source>Shelf code</source>
         <translation>Raf Kodu</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4754"/>
+        <location filename="../../GUI/form.ui" line="4677"/>
         <source>AAX999</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4878"/>
+        <location filename="../../GUI/form.ui" line="4801"/>
         <source>StockID</source>
         <translation>Stok ID</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4883"/>
+        <location filename="../../GUI/form.ui" line="4806"/>
         <source>Yourname</source>
         <translation>Adınız</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4888"/>
+        <location filename="../../GUI/form.ui" line="4811"/>
         <source>Reason</source>
         <translation>Sebebler</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4908"/>
+        <location filename="../../GUI/form.ui" line="4831"/>
         <source>Material Code</source>
         <translation>Malzeme Kodu</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4943"/>
+        <location filename="../../GUI/form.ui" line="4866"/>
         <source>Export</source>
         <translation>CSV Export</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4955"/>
+        <location filename="../../GUI/form.ui" line="4878"/>
         <source>Start</source>
         <translation>Başlangıç</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4968"/>
+        <location filename="../../GUI/form.ui" line="4891"/>
         <source>Finish</source>
         <translation>Bitiş</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="4986"/>
+        <location filename="../../GUI/form.ui" line="4909"/>
         <source>Export (csv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5012"/>
-        <source>dd.MM.yyyy HH:mm</source>
+        <location filename="../../GUI/form.ui" line="4929"/>
+        <location filename="../../GUI/form.ui" line="4952"/>
+        <source>yyyy-MM-dd HH:mm</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5034"/>
+        <location filename="../../GUI/form.ui" line="4974"/>
         <source>Theme</source>
         <translation>Temalar</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5046"/>
+        <location filename="../../GUI/form.ui" line="4986"/>
         <source>Theme 1</source>
         <translation>Tema 1</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5059"/>
+        <location filename="../../GUI/form.ui" line="4999"/>
         <source>Theme 2</source>
         <translation>Tema 2</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5072"/>
+        <location filename="../../GUI/form.ui" line="5012"/>
         <source>Theme 3</source>
         <translation>Tema 3</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5086"/>
+        <location filename="../../GUI/form.ui" line="5026"/>
         <source>Database Setting</source>
         <translation>Veri Tabanı Ayarları</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5112"/>
+        <location filename="../../GUI/form.ui" line="5052"/>
         <source>sqllite</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5117"/>
-        <location filename="../../GUI/form.ui" line="5144"/>
+        <location filename="../../GUI/form.ui" line="5057"/>
+        <location filename="../../GUI/form.ui" line="5084"/>
         <source>mysql</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5131"/>
+        <location filename="../../GUI/form.ui" line="5071"/>
         <source>DB Name</source>
         <translation>DB Adı</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5156"/>
+        <location filename="../../GUI/form.ui" line="5096"/>
         <source>host</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5179"/>
-        <location filename="../../GUI/form.ui" line="5512"/>
-        <location filename="../../GUI/form.ui" line="5633"/>
+        <location filename="../../GUI/form.ui" line="5119"/>
+        <location filename="../../GUI/form.ui" line="5465"/>
+        <location filename="../../GUI/form.ui" line="5612"/>
         <source>username</source>
         <translation>kullanıcı adı</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5202"/>
+        <location filename="../../GUI/form.ui" line="5142"/>
         <source>password</source>
         <translation>Şifre</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5236"/>
+        <location filename="../../GUI/form.ui" line="5176"/>
         <source>Test</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5250"/>
+        <location filename="../../GUI/form.ui" line="5189"/>
+        <source>Backup DB</source>
+        <translation>DB Yedekle</translation>
+    </message>
+    <message>
+        <location filename="../../GUI/form.ui" line="5203"/>
         <source>User Setting</source>
         <translation>Kullanıcı Ayarları</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5286"/>
-        <location filename="../../GUI/form.ui" line="5349"/>
+        <location filename="../../GUI/form.ui" line="5239"/>
+        <location filename="../../GUI/form.ui" line="5302"/>
         <source>Username</source>
         <translation>Kullanıcı Adı</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5291"/>
+        <location filename="../../GUI/form.ui" line="5244"/>
         <source>UserType</source>
         <translation>Kullanıcı Tipi</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5296"/>
+        <location filename="../../GUI/form.ui" line="5249"/>
         <source>RecordDate</source>
         <translation>Kayıt Tarihi</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5365"/>
+        <location filename="../../GUI/form.ui" line="5318"/>
         <source>Usertype</source>
         <translation>Kullanıcı Tipi</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5379"/>
+        <location filename="../../GUI/form.ui" line="5332"/>
         <source>Standart</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5384"/>
+        <location filename="../../GUI/form.ui" line="5337"/>
         <source>Admin</source>
         <translation>Yönetici</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5424"/>
+        <location filename="../../GUI/form.ui" line="5377"/>
         <source>Password </source>
         <translation>Şifre</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5461"/>
+        <location filename="../../GUI/form.ui" line="5414"/>
         <source>Re-Password </source>
         <translation>Şifre Tekrar</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5526"/>
+        <location filename="../../GUI/form.ui" line="5479"/>
         <source>Language</source>
         <translation>Dil Seçeneği</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5538"/>
+        <location filename="../../GUI/form.ui" line="5491"/>
         <source>English</source>
         <translation>İngilizce</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5551"/>
+        <location filename="../../GUI/form.ui" line="5504"/>
         <source>Turkish</source>
         <translation>Türkçe</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5602"/>
+        <location filename="../../GUI/form.ui" line="5555"/>
         <source>Attention = Restart required</source>
-        <translation type="unfinished">Dikktat ! Programın tekrar başlatılması gerekiyor.</translation>
+        <translation>Dikktat ! Programın tekrar başlatılması gerekiyor.</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5659"/>
+        <location filename="../../GUI/form.ui" line="5568"/>
+        <source>Export All Stock</source>
+        <translation>Tüm Stokları Kaydet</translation>
+    </message>
+    <message>
+        <location filename="../../GUI/form.ui" line="5580"/>
+        <source>Export to CSV</source>
+        <translation>CSV ile Kaydet</translation>
+    </message>
+    <message>
+        <location filename="../../GUI/form.ui" line="5638"/>
         <source>Logout</source>
         <translation>Çıkış</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5675"/>
+        <location filename="../../GUI/form.ui" line="5654"/>
         <source>authorize</source>
         <translation>Yönetici</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5690"/>
+        <location filename="../../GUI/form.ui" line="5669"/>
         <source>Menu</source>
         <translation>Menü</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5700"/>
+        <location filename="../../GUI/form.ui" line="5679"/>
         <source>Stock Settings</source>
         <translation>Stok Ayarları</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5709"/>
+        <location filename="../../GUI/form.ui" line="5688"/>
         <source>Material Settings</source>
         <translation>Malzeme Ayarları</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5715"/>
+        <location filename="../../GUI/form.ui" line="5694"/>
         <source>System Settings</source>
         <translation>Sistem Ayarları</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5734"/>
+        <location filename="../../GUI/form.ui" line="5713"/>
         <source>Room Setting</source>
         <translation>Oda Ayarları</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5739"/>
+        <location filename="../../GUI/form.ui" line="5718"/>
         <source>Cabinet Setting</source>
         <translation>Dolap Ayarları</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5744"/>
+        <location filename="../../GUI/form.ui" line="5723"/>
         <source>Shelf Setting</source>
         <translation>Raf Ayarları</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5764"/>
+        <location filename="../../GUI/form.ui" line="5743"/>
         <source>About</source>
         <translation>Hakkında</translation>
     </message>
     <message>
-        <location filename="../../GUI/form.ui" line="5769"/>
+        <location filename="../../GUI/form.ui" line="5748"/>
         <source>Exit</source>
         <translation>Çıkış</translation>
     </message>

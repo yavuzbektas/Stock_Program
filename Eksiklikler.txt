@@ -1,11 +1,29 @@
-# databese'in yedeğini almak için bir ayar yapılabilinir.
-# aynı şekilde belirli periyotlarda yedekleme yapılabilinir.
+# OK ---  databese'in yedeğini almak için bir ayar yapılabilinir.
+# OK --- aynı şekilde belirli periyotlarda yedekleme yapılabilinir. bsşlsngıçta yedek alıyor
+# OK --- mevcut tüm stokları rapor almalıyız. ayarlar sayfasında tüm stokları export edilsin
+# OK --- stok kodu kaldır - sadece son stok kodu olsun bosu bosuna stok kodu girmeyelim
+# OK ---  son stok kodunda birleştirmede bosluklar var bunu düzeltelim. code-1 in kendisinde bosluklar var
+# OK --- RAF NO DA KAYIT ARAMA CALISMIYOR
+# OK --- RAPOR ALMADAKİ TARİHLERİN FORMATI OLABİLİYORSA DEGİSTİR 2020-06-07 GİBİ YAP baslangıc 2020 olarak düzeltildi
+# OK --- + BUTONUNU KALDIR
+# OK ---  ürün al ver de - olursa ürün yerine koyma yazısı ekle
+# OK --- alver tablosunda iptal diyine cıkıs yapmalı
+# OK --- thema lar ayarlandı
+# OK --- oda adında problem var türkçesinde
+# OK --- tüm hataları br log dosyasına tutsun
+# OK --- stok aramada adet yerlerinde miktar yazılacak
+# OK --- MALZEME NİN A SI BUYUK MALZEME ADI SIGMIYOR
+
+# RAF no da arama sözcüğ yazısı cok ufak sıgmıyor
+# son stok kodu turkce karakter uzunlugu sıgmıyor
+# tema değişince buton renkleri görünmüyor düzeltilmesi gerekiyor.
 # dil değişimi yapılacak. sadece tablo baslıkları kaldı
 # tam ekran olabilme özelliği getir.
-# tüm hataları br log dosyasına tutsun
 # temel ayarların oldugu bir config dossyası yaratıp onunla temel program ayarları okunsun
 # obje isimlerini generic bir fonksiyon oalrak yaz
-#
+# png olarak kaydet pencersinde iptal edince hataveriyor.
+# GÜVENLİK STOK KODU GİR EĞER BU DEGERİN ALTINA DUSERSE UYARI VERDIR
+
 
 
 
