@@ -151,9 +151,9 @@ else :
                                "`yourname` TEXT,"
                                "`userID` TEXT NOT NULL,"
                                "`record_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP)")
-
+# "O:\TEKNIK_DERSLER\EETA-EOTA\ORTAK\STOK Programı\stockDB"
 class mydb():
-    def __init__(self,host="localhost",username="root",password="1234567890",DB_NAME="stockDB"):
+    def __init__(self,host="localhost",username="root",password="1234567890",DB_NAME="O:\TEKNIK_DERSLER\EETA-EOTA\ORTAK\STOK Programı\stockDB"):
         self.host=host
         self.username=username
         self.password=password

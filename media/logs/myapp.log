@@ -44,3 +44,20 @@ Thu, 09 Jul 2020 08:33:06 INFO     Existing
 Thu, 09 Jul 2020 08:44:30 INFO     Existing
 Thu, 09 Jul 2020 08:46:10 INFO     Existing
 Thu, 09 Jul 2020 09:05:56 INFO     Existing
+Tue, 28 Jul 2020 12:19:38 ERROR    Please fill the blanks
+Tue, 28 Jul 2020 12:22:51 ERROR    Please change your date
+Tue, 28 Jul 2020 12:28:34 INFO     6 Nolu Malzeme Kaydý güncellendi
+Tue, 28 Jul 2020 13:47:08 INFO     Existing
+Tue, 04 Aug 2020 14:51:08 ERROR    [Errno 2] No such file or directory: ''
+Tue, 04 Aug 2020 15:08:09 ERROR    'C:\\Users\\YBEKTAS\\Desktop\\Python\\Projeler\\StokProgram\\media\\images\\M8-BO.png' and 'C:\\Users\\YBEKTAS\\Desktop\\Python\\Projeler\\StokProgram\\media\\images\\M8-BO.png' are the same file
+Tue, 04 Aug 2020 15:08:09 INFO     737 Nolu Malzeme Kaydý güncellendi
+Tue, 04 Aug 2020 15:10:27 INFO      Nolu Oda kayýt güncellendi
+Tue, 04 Aug 2020 15:23:12 ERROR    Please fill the blanks
+Tue, 04 Aug 2020 15:30:30 INFO     Existing
+Tue, 04 Aug 2020 15:36:34 INFO     Existing
+Tue, 04 Aug 2020 15:59:03 INFO     Existing
+Tue, 04 Aug 2020 15:59:30 ERROR    Please fill the blanks
+Tue, 04 Aug 2020 15:59:33 INFO     Existing
+Sun, 09 Aug 2020 11:42:33 ERROR    'mydb' object has no attribute 'db'
+Sun, 09 Aug 2020 11:45:17 INFO     Existing
+Mon, 10 Aug 2020 12:58:18 INFO     Existing

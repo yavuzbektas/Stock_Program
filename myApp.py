@@ -20,12 +20,14 @@ import pyqrcode
 import db_mysql
 import logging,logging.handlers
 # ================   SETTINGS     ===================================
-BASE_PATH = os.getcwd()
+
+BASE_PATH = os.getcwd() # serverdan çalışılınca burası iptal
+BASE_PATH = "O:\TEKNIK_DERSLER\EETA-EOTA\ORTAK\STOK Programı"
 IMAGE_DIR = (BASE_PATH + '\\media\\images\\') # resimler ileride serverda databasein oldugu yerde olacaktır.
 FILE_DIR = (BASE_PATH + '\\media\\files\\') #
 REPORT_DIR = (BASE_PATH + '\\media\\Reports\\')
 BACKUP_DIR = (BASE_PATH + '\\media\\backup\\')
-AUTO_BACKUP = "NO"
+AUTO_BACKUP = "YES"
 SETTING_DIR = (BASE_PATH + '\\staticfiles\\')
 SETTING_FILE = "settings.txt"
 SERVER_SETTING = {
@@ -1069,7 +1071,7 @@ class MyWindow(QMainWindow):
     def insert_material_table(self):
         result=self.read_material()
         if  result== 2:
-            data = self.db.check_material((self.material_name))
+            data = self.db.check_material((self.material_code1))
             if data != None:
                 error_msjbox(title='Duplicate Error', text='this record has already registered')
                 self.ui.statusbar.showMessage('Please change your data')
@@ -1748,10 +1750,11 @@ def show_LoginPage():
 
     window.show()
     try:
-        sys.exit(app.exec_())
-    except:
         print("Exiting")
         mylog("Existing", type="info")
+        sys.exit(app.exec_())
+    except Exception as err:
+        mylog(err, type="error")
 if __name__ == "__main__":
     try:
         
